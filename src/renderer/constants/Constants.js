@@ -4,8 +4,10 @@ export const ArtistListConstants = keymirror({
   LOAD_ARTISTS: null,
 });
 
-export const ArtistPageConstant = keymirror({
-  LOAD_ARTIST: null,
+export const ArtistPageConstants = keymirror({
+  LOAD_ALBUMS: null,
+  LOAD_ARTIST_NAME: null,
+  LOAD_ARTIST_INFO: null,
 });
 
 export const FoldersConstants = keymirror({

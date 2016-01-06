@@ -7,6 +7,6 @@ export default class NavItem extends Component {
   }
 
   handleClick(ev) {
-    this.props.onClick(ev, this.props.value);
+    this.props.onClick(ev, this.props.value, this.props.text);
   }
 }

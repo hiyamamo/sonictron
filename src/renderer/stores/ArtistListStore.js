@@ -1,7 +1,6 @@
 import { ArtistListConstants } from '../constants/Constants';
 import { Store } from 'material-flux';
 
-const LOAD_EVENT = 'load';
 
 export default class ArtistListStore extends Store {
   constructor(context) {

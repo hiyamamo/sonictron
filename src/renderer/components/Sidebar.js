@@ -58,11 +58,12 @@ export default class Sidebar extends Component {
     this.setState({
       selectedFolder: ev.target.value,
     });
-    this._loadArtist(ev.target.value);
+    this._loadArtists(ev.target.value);
   }
 
-  _handleArtistClick(ev, key) {
-    console.log(key);
+  _handleArtistClick(ev, key, name) {
+    ev.preventDefault();
+    this._loadArtistPage(key, name);
   }
 
   render() {
@@ -77,13 +78,17 @@ export default class Sidebar extends Component {
   }
 
   _loadSidebar() {
-    this._loadArtist('all');
+    this._loadArtists('all');
     this.actions.foldersAction.load();
     this.actions.playlistsAction.load();
   }
 
-  _loadArtist(folderId) {
+  _loadArtists(folderId) {
     this.actions.artistListAction.load(folderId);
+  }
+
+  _loadArtistPage(artistId, artistName) {
+    this.actions.artistListAction.loadArtistPage(artistId, artistName);
   }
 
   _handleReload(ev) {

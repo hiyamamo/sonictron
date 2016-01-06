@@ -27,7 +27,7 @@ export default class App extends React.Component {
             <Pane>
               <Main />
             </Pane>
-            <Pane>
+            <Pane ptSize='sm'>
               <Config />
             </Pane>
           </Content>

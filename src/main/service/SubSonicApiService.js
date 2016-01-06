@@ -2,13 +2,14 @@
 import IPCKeys from '../../common/IPCKeys';
 import http from 'http';
 import url from 'url';
-import Promise from 'ypromise';
+import { buildURL } from '../../common/Utils';
 
 const APIMethods = {
   GetArtists: 'getIndexes',
   GetPlaylists: 'getPlaylists',
   GetFolders: 'getMusicFolders',
-  GetArtist: 'getArtist',
+  GetDirectry: 'getMusicDirectory',
+  GetCoverArt: 'getCoverArt',
 };
 export default {
   listen(ipc){
@@ -16,7 +17,8 @@ export default {
     ipc.on(IPCKeys.RequestGetArtists, this._getArtists.bind(this));
     ipc.on(IPCKeys.RequestGetPlaylists, this._getPlaylists.bind(this));
     ipc.on(IPCKeys.RequestGetFolders, this._getFolders.bind(this));
-    ipc.on(IPCKeys.RequestGetArtist, this._getArtist.bind(this));
+    ipc.on(IPCKeys.RequestGetAlbums, this._getAlbums.bind(this));
+    ipc.on(IPCKeys.RequestGetCoverArtURL, this._getCoverArtURL.bind(this));
   },
 
   _getArtists(event, folderId) {
@@ -53,18 +55,28 @@ export default {
     });
   },
 
-  _getArtist(event, artistId) {
+  _getAlbums(event, artistId) {
     let params = {
       id: artistId,
     };
-    const request = this._subsonicRequest(APIMethods.GetArtist, params);
+    const request = this._subsonicRequest(APIMethods.GetDirectry, params);
 
     request.then((res) => {
-      event.sender.send(IPCKeys.FinishGetArtist, res);
+      event.sender.send(IPCKeys.FinishGetAlbums, res);
     }).catch((err) => {
       event.sender.send(IPCKeys.SendErrorMessage, err);
     });
-  }
+  },
+
+  _getCoverArtURL(event, id) {
+    let params = {
+      id: id,
+    };
+
+    params = this._getHttpParams(params);
+    const url = this._buildURL(APIMethods.GetCoverArt, params);
+    event.sender.send(IPCKeys.FinishGetCoverArtURL, url);
+  },
 
 
 
@@ -75,35 +87,15 @@ export default {
     this._salt = localStorage.salt;
   },
 
-  _buildURL(method, params) {
-    const split = this._server.split(':');
-    const options = {
-      method: 'GET',
-      protocol: 'http',
-      headers: {
-        'Content-Type': 'application/json; charset=utf8'
-      },
-      host: this._server,
-      pathname: '/rest/' + method + '.view',
-      query: params,
-    };
-
-    return url.format(options);
-  },
-
   _subsonicRequest(method, params) {
-    params = params || {};
 
-    Object.assign( params, {
-      u: this._user,
-      s: this._server,
-      t: this._md5Digest,
-      s: this._salt,
-      c: 'Sonictron',
-      v: '1.13.0',
-      f: 'json',
-    });
-    const url = this._buildURL(method, params);
+    const settings = {
+      server: this._server,
+      user: this._user,
+      md5Digest: this._md5Digest,
+      salt: this._salt,
+    };
+    const url = buildURL(method, params, settings);
     let exception = { reason : 'Error when connect subsonic server' };
 
     let httpPromise = new Promise((resolve, reject) => {

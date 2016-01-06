@@ -9,6 +9,8 @@ export default keymirror({
   RequestGetAlbums: null,
   FinishGetAlbums: null,
   SaveServerConfig: null,
+  RequestGetCoverArtURL: null,
+  FinishGetCoverArtURL: null,
   Initialize: null,
   SendErrorMessage: null,
 });
