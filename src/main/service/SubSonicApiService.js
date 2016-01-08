@@ -19,6 +19,7 @@ export default {
     ipc.on(IPCKeys.RequestGetFolders, this._getFolders.bind(this));
     ipc.on(IPCKeys.RequestGetAlbums, this._getAlbums.bind(this));
     ipc.on(IPCKeys.RequestGetCoverArtURL, this._getCoverArtURL.bind(this));
+    ipc.on(IPCKeys.RequestGetSongs, this._getSongs.bind(this));
   },
 
   _getArtists(event, folderId) {
@@ -63,6 +64,19 @@ export default {
 
     request.then((res) => {
       event.sender.send(IPCKeys.FinishGetAlbums, res);
+    }).catch((err) => {
+      event.sender.send(IPCKeys.SendErrorMessage, err);
+    });
+  },
+
+  _getSongs(event, id) {
+    let params = {
+      id: id,
+    };
+    const request = this._subsonicRequest(APIMethods.GetDirectry, params);
+
+    request.then((res) => {
+      event.sender.send(IPCKeys.FinishGetSongs, res);
     }).catch((err) => {
       event.sender.send(IPCKeys.SendErrorMessage, err);
     });

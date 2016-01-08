@@ -1,5 +1,5 @@
 import { Action } from 'material-flux';
-import { ArtistListConstants, ArtistPageConstants, } from '../constants/Constants';
+import { ArtistListConstants, MainConstants, } from '../constants/Constants';
 import IPCKeys from '../../common/IPCKeys';
 
 export default class ArtistListAction extends Action {
@@ -15,7 +15,7 @@ export default class ArtistListAction extends Action {
 
   loadArtistPage(artistId, artistName) {
     this._ipc.send(IPCKeys.RequestGetAlbums, artistId);
-    this.dispatch(ArtistPageConstants.LOAD_ARTIST_NAME, artistName);
+    this.dispatch(MainConstants.LOAD_ARTIST_NAME, artistName);
   }
 
   _onFinishGetArtists(event, response) {

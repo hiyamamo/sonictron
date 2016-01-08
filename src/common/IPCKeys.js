@@ -8,6 +8,8 @@ export default keymirror({
   FinishGetFolders: null,
   RequestGetAlbums: null,
   FinishGetAlbums: null,
+  RequestGetSongs: null,
+  FinishGetSongs: null,
   SaveServerConfig: null,
   RequestGetCoverArtURL: null,
   FinishGetCoverArtURL: null,

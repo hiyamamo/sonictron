@@ -63,6 +63,7 @@ export default class Sidebar extends Component {
 
   _handleArtistClick(ev, key, name) {
     ev.preventDefault();
+    this.actions.mainAction.changeMode('album');
     this._loadArtistPage(key, name);
   }
 

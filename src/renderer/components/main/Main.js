@@ -1,6 +1,7 @@
 import Component from '../Component';
 import React from 'react';
-import ArtistPage from './ArtistPage';
+import AlbumList from './AlbumList';
+import SongList from './SongList';
 
 export default class Main extends Component {
   constructor(...args) {
@@ -9,42 +10,52 @@ export default class Main extends Component {
     this.stores = this.context.stores;
 
     this.state = {
-      mode: 'artist',
+      mode: this.stores.mainStore.getMode(),
       name: '',
       albums: [],
+      songs: [],
     };
   }
 
   componentDidMount() {
-    this.stores.artistPageStore.onChange(this._onLoadArtistPage.bind(this));
+    this.stores.mainStore.onChange(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
     this.stores.artistPageStore.removeAllChangeListeners();
   }
 
-  _onLoadArtistPage() {
-    const store = this.stores.artistPageStore;
-    const name = store.getArtistName();
-    const albums = store.getAlbums();
+  _onChange() {
+    const store = this.stores.mainStore;
+
     this.setState({
-      name: name,
-      albums: albums,
+      name: store.getArtistName(),
+      albums: store.getAlbums(),
+      songs: store.getSongs(),
+      mode: store.getMode(),
     });
+
   }
 
 
   _handleClickAlbum(ev, id) {
-    console.log(id);
-    console.log(this);
+    this.actions.mainAction.changeMode('song');
+    this.actions.mainAction.loadSongs(id);
+  }
 
+  _handleClickSong(ev, id) {
+    console.log(id);
   }
 
 
   render() {
+    let albumList = <AlbumList albums={this.state.albums} onClick={this._handleClickAlbum.bind(this)} />;
+    let songList = <SongList songs={this.state.songs} onClick={this._handleClickSong.bind(this)} />;
+
+    let content = this.state.mode === 'album' ? albumList : songList;
     return (
       <div className='main' >
-        <ArtistPage name={this.state.name} albums={this.state.albums} onClick={this._handleClickAlbum.bind(this)} />
+        {content}
       </div>
     );
   }
