@@ -1,5 +1,4 @@
 import Component from './Component';
-import { History } from 'react-router';
 import React from 'react';
 
 export default class Config extends Component {
