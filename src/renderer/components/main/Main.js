@@ -19,7 +19,7 @@ export default class Main extends Component {
     this.stores.artistPageStore.onChange(this._onLoadArtistPage.bind(this));
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     this.stores.artistPageStore.removeAllChangeListeners();
   }
 

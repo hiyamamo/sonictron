@@ -18,7 +18,7 @@ export default class Config extends Component {
     this.configStore.onChange(this._onSave.bind(this));
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     this.configStore.removeAllChangeListeners();
   }
 

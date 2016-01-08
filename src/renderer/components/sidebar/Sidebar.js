@@ -30,7 +30,7 @@ export default class Sidebar extends Component {
     this.stores.playlistsStore.onChange(this._onLoadPlaylists.bind(this));
   }
 
-  componentWillUnMount() {
+  componentWillUnmount () {
     this.stores.artistListStore.removeAllChangeListeners();
     this.stores.foldersStore.removeAllChangeListeners();
     this.stores.playlistsStore.removeAllChangeListeners();
