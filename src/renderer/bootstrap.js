@@ -2,16 +2,19 @@
 
 import ReactDOM from 'react-dom';
 import React from 'react';
-import App from './components/App.js';
+import { Router } from 'react-router';
 import { ipcRenderer } from 'electron';
 import IPCKeys from '../common/IPCKeys';
-import AppContext from './AppContext';
+import routes from './routes';
 
 window.onload = () => {
-  const context = new AppContext();
   ipcRenderer.send(IPCKeys.Initialize, localStorage);
   ReactDOM.render(
-    <App context={context}/>,
+    (
+      <Router>
+        {routes}
+      </Router>
+    ),
     document.querySelector('.container')
   );
 }
