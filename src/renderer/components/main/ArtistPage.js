@@ -1,8 +1,7 @@
-import Component from './Component';
 import React from 'react';
 import AlbumList from './AlbumList';
 
-export default class ArtistPage extends Component {
+export default class ArtistPage extends React.Component {
   render() {
     return (
       <div>

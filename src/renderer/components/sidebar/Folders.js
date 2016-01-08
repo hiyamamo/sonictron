@@ -1,8 +1,7 @@
-import Component from './Component';
 import React from 'react';
 import { NavTitle } from 'react-photonkit';
 
-export default class Folders extends Component {
+export default class Folders extends React.Component {
   render() {
     let items = null;
     let folderGroup = null;

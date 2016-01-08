@@ -1,9 +1,8 @@
-import Component from './Component';
 import React from 'react';
-import { buildURL } from '../../common/Utils';
+import { buildURL } from '../../../common/Utils';
 import { Col } from 'react-bootstrap';
 
-export default class AlbumItem extends Component {
+export default class AlbumItem extends React.Component {
   render() {
     const settings = {
       server: localStorage.server,

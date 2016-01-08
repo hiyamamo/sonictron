@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from '../Component';
 import React from 'react';
 import ArtistPage from './ArtistPage';
 

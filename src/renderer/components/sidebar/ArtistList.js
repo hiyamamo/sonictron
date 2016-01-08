@@ -1,9 +1,8 @@
-import Component from './Component';
 import React from 'react';
 import { NavTitle } from 'react-photonkit';
 import NavItem from './NavItem';
 
-export default class ArtistList extends Component {
+export default class ArtistList extends React.Component {
 
   render() {
     let artists = <div></div>;

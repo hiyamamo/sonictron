@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from '../Component';
 import ArtistList from './ArtistList';
 import Folders from './Folders';
 import Playlists from './Playlists';

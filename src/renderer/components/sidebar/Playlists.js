@@ -1,8 +1,7 @@
-import Component from './Component';
 import React from 'react';
 import { NavTitle, NavGroupItem } from 'react-photonkit';
 
-export default class Playlists extends Component {
+export default class Playlists extends React.Component {
   render() {
     let playlists = null;
     if (this.props.playlists !== null){

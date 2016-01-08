@@ -5,8 +5,8 @@ import React from 'react';
 import Provider from './Provider';
 import Config from './Config';
 import MusicPlayer from './MusicPlayer';
-import Sidebar from './Sidebar';
-import Main from './Main';
+import Sidebar from './sidebar/Sidebar';
+import Main from './main/Main';
 import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
 
 export default class App extends React.Component {

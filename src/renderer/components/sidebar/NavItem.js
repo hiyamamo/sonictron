@@ -1,7 +1,6 @@
-import Component from './Component';
 import React from 'react';
 
-export default class NavItem extends Component {
+export default class NavItem extends React.Component {
   render() {
     return <a className='nav-group-item' onClick={this.handleClick.bind(this)} ><span>{this.props.text}</span></a>
   }
