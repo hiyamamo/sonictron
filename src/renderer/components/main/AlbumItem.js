@@ -13,6 +13,7 @@ export default class AlbumItem extends React.Component {
 
     const params = {
       id: this.props.art,
+      size: 160,
     };
 
     const coverArtUrl = buildURL('getCoverArt', params, settings);
