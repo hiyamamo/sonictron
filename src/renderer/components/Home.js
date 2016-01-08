@@ -7,13 +7,12 @@ import MusicPlayer from './MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
 import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
-import { Link } from 'react-router';
 
 export default class Home extends Component {
 
   render() {
     return (
-      <div className='home'>
+      <Content>
         <Pane ptSize='sm' sidebar>
           <Sidebar />
         </Pane>
@@ -22,7 +21,7 @@ export default class Home extends Component {
         </Pane>
         <Pane ptSize='sm'>
         </Pane>
-      </div>
+      </Content>
     );
   }
 

@@ -1,5 +1,6 @@
 import Component from './Component';
 import React from 'react';
+import { Content } from 'react-photonkit';
 
 export default class Config extends Component {
   constructor(...args) {
@@ -51,7 +52,7 @@ export default class Config extends Component {
 
   render() {
     return (
-      <div className="config">
+      <Content className="config">
         <p>server</p>
         <input type="text" onChange={this._onServerChange.bind(this)} value={this.state.server} ></input>
         <p>user</p>
@@ -59,7 +60,7 @@ export default class Config extends Component {
         <p>password</p>
         <input type="password" onChange={this._onPasswordChange.bind(this)} value={this.state.password} ></input>
         <button onClick={this._handleSave.bind(this)} >save</button>
-      </div>
+      </Content>
     );
   }
 }

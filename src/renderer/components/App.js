@@ -28,9 +28,7 @@ export default class App extends React.Component {
               <Link to='/'>Home</Link>
             </Actionbar>
           </Toolbar>
-          <Content>
-            {this.props.children}
-          </Content>
+          {this.props.children}
         </Window>
       </Provider>
     );
