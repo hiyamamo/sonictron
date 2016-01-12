@@ -1,6 +1,5 @@
 import React from 'react';
 import AlbumItem from './AlbumItem';
-import { Grid, Row } from 'react-bootstrap';
 
 export default class AlbumList extends React.Component {
   render() {
