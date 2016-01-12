@@ -1,16 +1,37 @@
 import React from 'react';
+import SongIcon from './SongIcon';
 
 export default class SongItem extends React.Component { 
   render() {
     return (
-      <a href='#' className='songItem' onClick={this._handleClick.bind(this)} >
-      {this.props.title}
-      </a>
+      <tr className='songItem' >
+        <td>
+          <SongIcon glyph='star-empty' title='favorite' onClick={this._handleAddFav.bind(this)}/>
+          <SongIcon glyph='play' title='play' onClick={this._handlePlay.bind(this)} />
+          <SongIcon glyph='plus' title='add last' onClick={this._handleAddLast.bind(this)} />
+          <SongIcon glyph='right-thin' title='add next' onClick={this._handleAddNext.bind(this)} />
+        </td>
+        <td>{this.props.track}</td>
+        <td>{this.props.title}</td>
+        <td>{this.props.album}</td>
+        <td>{this.props.artist}</td>
+      </tr>
     );
   }
 
-  _handleClick(ev) {
-    ev.preventDefault();
-    this.props.onClick(ev, this.props.id);
+  _handleAddFav(ev) {
+    this.props.handlers.addFav(ev, this.props.id);
+  }
+
+  _handlePlay(ev) {
+    this.props.handlers.play(ev, this.props.id);
+  }
+
+  _handleAddLast(ev) {
+    this.props.handlers.addLast(ev, this.props.id);
+  }
+
+  _handleAddNext(ev) {
+    this.props.handlers.addNext(ev, this.props.id);
   }
 }
