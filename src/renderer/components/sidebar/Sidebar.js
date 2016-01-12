@@ -11,11 +11,11 @@ export default class Sidebar extends Component {
     super(...args);
     this.actions = this.context.actions;
     this.stores = this.context.stores;
-    const folders = this.stores.foldersStore.getFolders();
+    const folders = this.stores.sidebarStore.getFolders();
     this.state = {
-      artists: this.stores.artistListStore.getArtists(),
+      artists: this.stores.sidebarStore.getArtists(),
       folders: folders,
-      playlists: this.stores.playlistsStore.getPlaylists(),
+      playlists: this.stores.sidebarStore.getPlaylists(),
       selectedFolder: 'all',
     };
   }
@@ -25,32 +25,20 @@ export default class Sidebar extends Component {
   }
 
   componentDidMount() {
-    this.stores.artistListStore.onChange(this._onLoadArtists.bind(this));
-    this.stores.foldersStore.onChange(this._onLoadFolders.bind(this));
-    this.stores.playlistsStore.onChange(this._onLoadPlaylists.bind(this));
+    this.stores.sidebarStore.onChange(this._onChange.bind(this));
   }
 
   componentWillUnmount () {
-    this.stores.artistListStore.removeAllChangeListeners();
-    this.stores.foldersStore.removeAllChangeListeners();
-    this.stores.playlistsStore.removeAllChangeListeners();
+    this.stores.sidebarStore.removeAllChangeListeners();
   }
 
-  _onLoadArtists() {
-    this.setState({
-      artists: this.stores.artistListStore.getArtists(),
-    });
-  }
+  _onChange() {
+    const store = this.stores.sidebarStore;
 
-  _onLoadFolders() {
     this.setState({
-      folders: this.stores.foldersStore.getFolders(),
-    });
-  }
-
-  _onLoadPlaylists() {
-    this.setState({
-      playlists: this.stores.playlistsStore.getPlaylists(),
+      artists: store.getArtists(),
+      folders: store.getFolders(),
+      playlists: store.getPlaylists(),
     });
   }
 
@@ -64,7 +52,7 @@ export default class Sidebar extends Component {
   _handleArtistClick(ev, key, name) {
     ev.preventDefault();
     this.actions.mainAction.changeMode('album');
-    this._loadArtistPage(key, name);
+    this._loadAlbums(key, name);
   }
 
   render() {
@@ -79,17 +67,18 @@ export default class Sidebar extends Component {
   }
 
   _loadSidebar() {
+    const action = this.actions.sidebarAction;
     this._loadArtists('all');
-    this.actions.foldersAction.load();
-    this.actions.playlistsAction.load();
+    action.loadFolders();
+    action.loadPlaylists();
   }
 
   _loadArtists(folderId) {
-    this.actions.artistListAction.load(folderId);
+    this.actions.sidebarAction.loadArtists(folderId);
   }
 
-  _loadArtistPage(artistId, artistName) {
-    this.actions.artistListAction.loadArtistPage(artistId, artistName);
+  _loadAlbums(artistId, artistName) {
+    this.actions.sidebarAction.loadAlbums(artistId, artistName);
   }
 
   _handleReload(ev) {

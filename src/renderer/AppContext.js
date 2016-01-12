@@ -1,17 +1,13 @@
 import { Context } from 'material-flux';
 import { ipcRenderer } from 'electron';
-import ArtistListStore from './stores/ArtistListStore';
-import FoldersStore from './stores/FoldersStore';
-import PlaylistsStore from './stores/PlaylistsStore';
 import MainStore from './stores/MainStore';
+import SidebarStore from './stores/SidebarStore';
 import ConfigStore from './stores/ConfigStore';
 import MusicPlayerStore from './stores/MusicPlayerStore';
-import ArtistListAction from './actions/ArtistListAction';
-import FoldersAction from './actions/FoldersAction';
-import PlaylistsAction from './actions/PlaylistsAction';
+import MainAction from './actions/MainAction';
+import SidebarAction from './actions/SidebarAction';
 import ConfigAction from './actions/ConfigAction';
 import MusicPlayerAction from './actions/MusicPlayerAction';
-import MainAction from './actions/MainAction';
 import ErrorAction from './actions/ErrorAction';
 
 export default class AppContext extends Context {
@@ -20,21 +16,17 @@ export default class AppContext extends Context {
     this.ipc = ipcRenderer;
 
     this.stores = {
-      artistListStore: new ArtistListStore(this),
-      foldersStore: new FoldersStore(this),
-      playlistsStore: new PlaylistsStore(this),
-      configStore: new ConfigStore(this),
       mainStore: new MainStore(this),
+      sidebarStore: new SidebarStore(this),
+      configStore: new ConfigStore(this),
       musicPlayerStore: new MusicPlayerStore(this),
     };
 
 
     this.actions = {
-      artistListAction: new ArtistListAction(this),
-      foldersAction: new FoldersAction(this),
-      playlistsAction: new PlaylistsAction(this),
-      configAction: new ConfigAction(this),
       mainAction: new MainAction(this),
+      sidebarAction: new SidebarAction(this),
+      configAction: new ConfigAction(this),
       musicPlayerAction: new MusicPlayerAction(this),
       errorAction : new ErrorAction(this),
     };

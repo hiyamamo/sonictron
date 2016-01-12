@@ -1,7 +1,9 @@
 import keymirror from 'keymirror';
 
-export const ArtistListConstants = keymirror({
+export const SidebarConstants = keymirror({
   LOAD_ARTISTS: null,
+  LOAD_FOLDERS: null,
+  LOAD_PLAYLISTS: null,
 });
 
 export const MainConstants = keymirror({
@@ -10,14 +12,6 @@ export const MainConstants = keymirror({
   LOAD_ARTIST_INFO: null,
   LOAD_SONGS: null,
   CHANGE_MODE: null,
-});
-
-export const FoldersConstants = keymirror({
-  LOAD_FOLDERS: null,
-});
-
-export const PlaylistsConstants = keymirror({
-  LOAD_PLAYLISTS: null,
 });
 
 export const ConfigConstants = keymirror({
