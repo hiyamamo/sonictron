@@ -12,6 +12,7 @@ export const MainConstants = keymirror({
   LOAD_ARTIST_INFO: null,
   LOAD_SONGS: null,
   CHANGE_MODE: null,
+  SET_COVERART: null,
 });
 
 export const ConfigConstants = keymirror({

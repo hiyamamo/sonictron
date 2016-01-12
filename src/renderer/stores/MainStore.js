@@ -9,12 +9,14 @@ export default class MainStore extends Store {
       name: "",
       albums: [],
       songs: [],
+      coverArt: "",
     };
 
     this.register(MainConstants.LOAD_ALBUMS, this._loadAlbums);
     this.register(MainConstants.LOAD_ARTIST_NAME, this._loadName);
     this.register(MainConstants.LOAD_SONGS, this._loadSongs);
     this.register(MainConstants.CHANGE_MODE, this._onChangeMode);
+    this.register(MainConstants.SET_COVERART, this._setCoverArt);
   }
 
   getAlbums() {
@@ -31,6 +33,10 @@ export default class MainStore extends Store {
 
   getMode() {
     return this.state.mode;
+  }
+
+  getCoverArt() {
+    return this.state.coverArt;
   }
 
   _loadAlbums(albums) {
@@ -54,6 +60,12 @@ export default class MainStore extends Store {
   _onChangeMode(mode) {
     this.setState({
       mode: mode,
+    });
+  }
+
+  _setCoverArt(coverArt) {
+    this.setState({
+      coverArt: coverArt,
     });
   }
 }

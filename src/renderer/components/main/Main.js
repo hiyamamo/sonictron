@@ -10,10 +10,11 @@ export default class Main extends Component {
     this.stores = this.context.stores;
 
     this.state = {
-      mode: this.stores.mainStore.getMode(),
+      mode: 'none',
       name: '',
       albums: [],
       songs: [],
+			coverArt: '',
     };
   }
 
@@ -33,14 +34,15 @@ export default class Main extends Component {
       albums: store.getAlbums(),
       songs: store.getSongs(),
       mode: store.getMode(),
+			coverArt: store.getCoverArt(),
     });
 
   }
 
 
-  _handleClickAlbum(ev, id) {
+  _handleClickAlbum(ev, id, art) {
     this.actions.mainAction.changeMode('song');
-    this.actions.mainAction.loadSongs(id);
+    this.actions.mainAction.loadSongs(id, art);
   }
 
 	_handleAddSong2Next(ev, id) {
@@ -72,9 +74,21 @@ export default class Main extends Component {
 			play: this._handlePlaySong.bind(this),
 		};
     let albumList = <AlbumList albums={this.state.albums} onClick={this._handleClickAlbum.bind(this)} />;
-    let songList = <SongList songs={this.state.songs} handlers={songHandlers} />;
+    let songList = <SongList coverArt={this.state.coverArt} songs={this.state.songs} handlers={songHandlers} />;
 
-    let content = this.state.mode === 'album' ? albumList : songList;
+    let content;
+		switch(this.state.mode) {
+			case 'album':
+				content = albumList;
+				break;
+			case 'song':
+				content = songList;
+				break;
+			case 'none':
+			default:
+				content = null;
+				break;
+		}
     return (
       <div className='main' >
         {content}

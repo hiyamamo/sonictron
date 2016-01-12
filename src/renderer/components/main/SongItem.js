@@ -11,27 +11,27 @@ export default class SongItem extends React.Component {
           <SongIcon glyph='plus' title='add last' onClick={this._handleAddLast.bind(this)} />
           <SongIcon glyph='right-thin' title='add next' onClick={this._handleAddNext.bind(this)} />
         </td>
-        <td>{this.props.track}</td>
-        <td>{this.props.title}</td>
-        <td>{this.props.album}</td>
-        <td>{this.props.artist}</td>
+        <td>{this.props.song.track}</td>
+        <td>{this.props.song.title}</td>
+        <td>{this.props.song.album}</td>
+        <td>{this.props.song.artist}</td>
       </tr>
     );
   }
 
   _handleAddFav(ev) {
-    this.props.handlers.addFav(ev, this.props.id);
+    this.props.handlers.addFav(ev, this.props.song.id);
   }
 
   _handlePlay(ev) {
-    this.props.handlers.play(ev, this.props.id);
+    this.props.handlers.play(ev, this.props.song.id);
   }
 
   _handleAddLast(ev) {
-    this.props.handlers.addLast(ev, this.props.id);
+    this.props.handlers.addLast(ev, this.props.song.id);
   }
 
   _handleAddNext(ev) {
-    this.props.handlers.addNext(ev, this.props.id);
+    this.props.handlers.addNext(ev, this.props.song.id);
   }
 }

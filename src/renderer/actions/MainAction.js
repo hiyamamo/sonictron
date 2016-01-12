@@ -17,6 +17,7 @@ export default class MainAction extends Action {
 
   _onFinishGetPlaylist(event, response) {
     this.dispatch(MainConstants.LOAD_SONGS, response.playlist.entry);
+    this.dispatch(MainConstants.SET_COVERART, response.playlist.coverArt);
   }
 
   
@@ -24,8 +25,9 @@ export default class MainAction extends Action {
     this.dispatch(MainConstants.LOAD_SONGS, response.directory.child);
   }
 
-  loadSongs(id) {
+  loadSongs(id, coverArt) {
     this._ipc.send(IPCKeys.RequestGetSongs, id);
+    this.dispatch(MainConstants.SET_COVERART, coverArt);
   }
 
   changeMode(mode) {
