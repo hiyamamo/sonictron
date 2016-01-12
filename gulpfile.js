@@ -21,6 +21,7 @@ function compileJS() {
 
 function compileStyles() {
   gulp.src('src/**/main.scss')
+  .pipe(plumber())
   .pipe(sourcemaps.init())
   .pipe(sass())
   .pipe(sourcemaps.write('.'))
