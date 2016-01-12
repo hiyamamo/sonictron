@@ -10,6 +10,7 @@ var rimraf = require('rimraf');
 
 function compileJS() {
   return gulp.src('src/**/*.{js,jsx}')
+  .pipe(plumber())
   .pipe(sourcemaps.init())
   .pipe(babel({
     presets: ['es2015', 'react'],
@@ -19,7 +20,7 @@ function compileJS() {
 }
 
 function compileStyles() {
-  gulp.src('src/**/*.scss')
+  gulp.src('src/**/main.scss')
   .pipe(sourcemaps.init())
   .pipe(sass())
   .pipe(sourcemaps.write('.'))
@@ -46,15 +47,8 @@ gulp.task('compile:js', compileJS);
 gulp.task('compile:styles', compileStyles);
 
 gulp.task('watch', function(done) {
-  return gulp.src('src/**/*.{js,jsx}')
-  .pipe(plumber())
-  .pipe(watch('src/**/*.{js,jsx}', { verbose:true }))
-  .pipe(sourcemaps.init())
-  .pipe(babel({
-    presets: ['es2015', 'react'],
-  }))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('dist'));
+  gulp.watch('src/**/*.js', ['compile:js']);
+  gulp.watch('src/**/*.scss', ['compile:styles']);
 });
 
 gulp.task('html',copyHtml);
