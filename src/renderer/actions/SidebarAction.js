@@ -17,7 +17,13 @@ export default class SidebarAction extends Action {
 
   loadAlbums(artistId, artistName) {
     this._ipc.send(IPCKeys.RequestGetAlbums, artistId);
+    this.dispatch(MainConstants.CHANGE_MODE, 'album');
     this.dispatch(MainConstants.LOAD_ARTIST_NAME, artistName);
+  }
+
+  loadSongsInPlaylist(id) {
+    this._ipc.send(IPCKeys.RequestGetPlaylist, id);
+    this.dispatch(MainConstants.CHANGE_MODE, 'song');
   }
 
   _onFinishGetArtists(event, response) {

@@ -51,8 +51,12 @@ export default class Sidebar extends Component {
 
   _handleArtistClick(ev, key, name) {
     ev.preventDefault();
-    this.actions.mainAction.changeMode('album');
     this._loadAlbums(key, name);
+  }
+
+  _handlePlaylistClick(ev, key, name) {
+    ev.preventDefault();
+    this.actions.sidebarAction.loadSongsInPlaylist(key);
   }
 
   render() {
@@ -60,7 +64,7 @@ export default class Sidebar extends Component {
       <div className='sidebar'>
         <SidebarButtonGroup handleReload={this._handleReload.bind(this)}/>
         <Folders items={this.state.folders} selected={this.state.selectedFolder} onChangeSelect={this._handleChangeFolder.bind(this)} />
-        <Playlists playlists={this.state.playlists} />
+        <Playlists playlists={this.state.playlists} onClick={this._handlePlaylistClick.bind(this)} />
         <ArtistList items={this.state.artists} onClick={this._handleArtistClick.bind(this)} />
       </div>
     );

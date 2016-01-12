@@ -4,6 +4,8 @@ export default keymirror({
   FinishGetArtists: null,
   RequestGetPlaylists: null,
   FinishGetPlaylists: null,
+  RequestGetPlaylist: null,
+  FinishGetPlaylist: null,
   RequestGetFolders: null,
   FinishGetFolders: null,
   RequestGetAlbums: null,

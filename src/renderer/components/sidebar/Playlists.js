@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavTitle, NavGroupItem } from 'react-photonkit';
+import { NavTitle } from 'react-photonkit';
+import NavItem from './NavItem';
 
 export default class Playlists extends React.Component {
   render() {
@@ -7,7 +8,7 @@ export default class Playlists extends React.Component {
     if (this.props.playlists !== null){
       playlists = this.props.playlists.map((p) => {
 
-        return <NavGroupItem key={p.id} eventKey={p.id} text={p.name} />;
+        return <NavItem key={p.id} onClick={this.props.onClick} value={p.id} text={p.name} />;
       });
     }
 

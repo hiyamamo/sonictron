@@ -8,11 +8,17 @@ export default class MainAction extends Action {
     this._ipc = context.ipc;
     this._ipc.on(IPCKeys.FinishGetAlbums, this._onFinishGetAlbums.bind(this));
     this._ipc.on(IPCKeys.FinishGetSongs, this._onFinishGetSongs.bind(this));
+    this._ipc.on(IPCKeys.FinishGetPlaylist, this._onFinishGetPlaylist.bind(this));
   }
 
   _onFinishGetAlbums(event, response) {
     this.dispatch(MainConstants.LOAD_ALBUMS, response.directory.child);
   }
+
+  _onFinishGetPlaylist(event, response) {
+    this.dispatch(MainConstants.LOAD_SONGS, response.playlist.entry);
+  }
+
   
   _onFinishGetSongs(event, response) {
     this.dispatch(MainConstants.LOAD_SONGS, response.directory.child);

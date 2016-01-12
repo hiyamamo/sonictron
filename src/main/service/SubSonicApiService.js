@@ -7,6 +7,7 @@ import { buildURL } from '../../common/Utils';
 const APIMethods = {
   GetArtists: 'getIndexes',
   GetPlaylists: 'getPlaylists',
+  GetPlaylist: 'getPlaylist',
   GetFolders: 'getMusicFolders',
   GetDirectry: 'getMusicDirectory',
   GetCoverArt: 'getCoverArt',
@@ -16,6 +17,7 @@ export default {
     ipc.on(IPCKeys.SaveServerConfig, this.onSaveServerConfig.bind(this));
     ipc.on(IPCKeys.RequestGetArtists, this._getArtists.bind(this));
     ipc.on(IPCKeys.RequestGetPlaylists, this._getPlaylists.bind(this));
+    ipc.on(IPCKeys.RequestGetPlaylist, this._getPlaylist.bind(this));
     ipc.on(IPCKeys.RequestGetFolders, this._getFolders.bind(this));
     ipc.on(IPCKeys.RequestGetAlbums, this._getAlbums.bind(this));
     ipc.on(IPCKeys.RequestGetCoverArtURL, this._getCoverArtURL.bind(this));
@@ -41,6 +43,19 @@ export default {
 
     request.then((res) => {
       event.sender.send(IPCKeys.FinishGetPlaylists, res);
+    }).catch((err) => {
+      event.sender.send(IPCKeys.SendErrorMessage, err);
+    });
+  },
+  
+  _getPlaylist(event, id) {
+    let params = {
+      id: id,
+    };
+    const request = this._subsonicRequest(APIMethods.GetPlaylist, params);
+
+    request.then((res) => {
+      event.sender.send(IPCKeys.FinishGetPlaylist, res);
     }).catch((err) => {
       event.sender.send(IPCKeys.SendErrorMessage, err);
     });
