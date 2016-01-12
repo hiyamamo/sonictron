@@ -5,14 +5,23 @@ var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
+var sass = require('gulp-sass');
 var rimraf = require('rimraf');
 
-function buildJS() {
+function compileJS() {
   return gulp.src('src/**/*.{js,jsx}')
   .pipe(sourcemaps.init())
   .pipe(babel({
     presets: ['es2015', 'react'],
   }))
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('dist'));
+}
+
+function compileStyles() {
+  gulp.src('src/**/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass())
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest('dist'));
 }
@@ -26,11 +35,15 @@ function cleanAllDirectory(cb) {
   rimraf('./dist', cb);
 }
 
-function buildAll() {
-  buildJS();
+function compileAll() {
+  compileJS();
   copyHtml();
+  compileStyles();
 }
-gulp.task('build:js', buildJS );
+
+gulp.task('compile:js', compileJS);
+
+gulp.task('compile:styles', compileStyles);
 
 gulp.task('watch', function(done) {
   return gulp.src('src/**/*.{js,jsx}')
@@ -49,4 +62,4 @@ gulp.task('html',copyHtml);
 gulp.task('clean', cleanAllDirectory);
 
 
-gulp.task('default', ['clean'], buildAll);
+gulp.task('default', ['clean'], compileAll);
