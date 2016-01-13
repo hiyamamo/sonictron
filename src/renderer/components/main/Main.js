@@ -14,7 +14,7 @@ export default class Main extends Component {
       name: '',
       albums: [],
       songs: [],
-			coverArt: '',
+      coverArt: '',
     };
   }
 
@@ -34,7 +34,7 @@ export default class Main extends Component {
       albums: store.getAlbums(),
       songs: store.getSongs(),
       mode: store.getMode(),
-			coverArt: store.getCoverArt(),
+      coverArt: store.getCoverArt(),
     });
 
   }
@@ -45,50 +45,50 @@ export default class Main extends Component {
     this.actions.mainAction.loadSongs(id, art);
   }
 
-	_handleAddSong2Next(ev, id) {
-		ev.preventDefault();
-		console.log('add next: ', id);
-	}
+  _handleAddSong2Next(ev, id) {
+    ev.preventDefault();
+    console.log('add next: ', id);
+  }
 
-	_handleAddSong2Last(ev, id) {
-		ev.preventDefault();
-		console.log('add last: ', id);
-	}
+  _handleAddSong2Last(ev, id) {
+    ev.preventDefault();
+    console.log('add last: ', id);
+  }
 
-	_handleAddSong2Fav(ev, id) {
-		ev.preventDefault();
-		console.log('add fav: ', id);
-	}
+  _handleAddSong2Fav(ev, id) {
+    ev.preventDefault();
+    console.log('add fav: ', id);
+  }
 
-	_handlePlaySong(ev, id) {
-		ev.preventDefault();
-		console.log('play: ', id);
-	}
+  _handlePlaySong(ev, id) {
+    ev.preventDefault();
+    console.log('play: ', id);
+  }
 
 
   render() {
-		const songHandlers = {
-			addLast: this._handleAddSong2Last.bind(this),
-			addNext: this._handleAddSong2Next.bind(this),
-			addFav: this._handleAddSong2Fav.bind(this),
-			play: this._handlePlaySong.bind(this),
-		};
+    const songHandlers = {
+      addLast: this._handleAddSong2Last.bind(this),
+      addNext: this._handleAddSong2Next.bind(this),
+      addFav: this._handleAddSong2Fav.bind(this),
+      play: this._handlePlaySong.bind(this),
+    };
     let albumList = <AlbumList albums={this.state.albums} onClick={this._handleClickAlbum.bind(this)} />;
     let songList = <SongList coverArt={this.state.coverArt} songs={this.state.songs} handlers={songHandlers} />;
 
     let content;
-		switch(this.state.mode) {
-			case 'album':
-				content = albumList;
-				break;
-			case 'song':
-				content = songList;
-				break;
-			case 'none':
-			default:
-				content = null;
-				break;
-		}
+    switch(this.state.mode) {
+      case 'album':
+        content = albumList;
+        break;
+      case 'song':
+        content = songList;
+        break;
+      case 'none':
+      default:
+        content = null;
+        break;
+    }
     return (
       <div className='main' >
         {content}
