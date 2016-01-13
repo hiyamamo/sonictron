@@ -56,7 +56,7 @@ export default class Sidebar extends Component {
 
   _handlePlaylistClick(ev, key, name) {
     ev.preventDefault();
-    this.actions.sidebarAction.loadSongsInPlaylist(key);
+    this.actions.sidebarAction.loadSongsInPlaylist(key, name);
   }
 
   render() {

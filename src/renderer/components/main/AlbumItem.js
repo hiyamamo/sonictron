@@ -33,6 +33,6 @@ export default class AlbumItem extends React.Component {
 
   _handleClick(ev) {
     ev.preventDefault();
-    this.props.onClick(ev, this.props.id, this.props.art);
+    this.props.onClick(ev, this.props.id, this.props.art, this.props.title);
   }
 }

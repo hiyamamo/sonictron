@@ -11,7 +11,7 @@ export default class Main extends Component {
 
     this.state = {
       mode: 'none',
-      name: '',
+      title: '',
       albums: [],
       songs: [],
       coverArt: '',
@@ -30,7 +30,7 @@ export default class Main extends Component {
     const store = this.stores.mainStore;
 
     this.setState({
-      name: store.getArtistName(),
+      title: store.getTitle(),
       albums: store.getAlbums(),
       songs: store.getSongs(),
       mode: store.getMode(),
@@ -40,9 +40,10 @@ export default class Main extends Component {
   }
 
 
-  _handleClickAlbum(ev, id, art) {
+  _handleClickAlbum(ev, id, art, albumName) {
     this.actions.mainAction.changeMode('song');
     this.actions.mainAction.loadSongs(id, art);
+    this.actions.mainAction.changeTitle(albumName);
   }
 
   _handleAddSong2Next(ev, id) {
@@ -91,6 +92,7 @@ export default class Main extends Component {
     }
     return (
       <div className='main' >
+        <h3>{this.state.title}</h3>
         {content}
       </div>
     );

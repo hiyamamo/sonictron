@@ -6,14 +6,14 @@ export default class MainStore extends Store {
     super(context);
 
     this.state = {
-      name: "",
+      title: "",
       albums: [],
       songs: [],
       coverArt: "",
     };
 
     this.register(MainConstants.LOAD_ALBUMS, this._loadAlbums);
-    this.register(MainConstants.LOAD_ARTIST_NAME, this._loadName);
+    this.register(MainConstants.SET_TITLE, this._setTitle);
     this.register(MainConstants.LOAD_SONGS, this._loadSongs);
     this.register(MainConstants.CHANGE_MODE, this._onChangeMode);
     this.register(MainConstants.SET_COVERART, this._setCoverArt);
@@ -27,8 +27,8 @@ export default class MainStore extends Store {
     return this.state.songs;
   }
 
-  getArtistName() {
-    return this.state.name;
+  getTitle() {
+    return this.state.title;
   }
 
   getMode() {
@@ -51,9 +51,9 @@ export default class MainStore extends Store {
     });
   }
 
-  _loadName(name) {
+  _setTitle(title) {
     this.setState({
-      name: name,
+      title: title,
     });
   }
 

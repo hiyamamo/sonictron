@@ -1,5 +1,6 @@
 import React from 'react';
 import SongItem from './SongItem'
+import SongListControllerWrapper from './SongListControllerWrapper';
 import { Table } from 'react-photonkit';
 import { buildURL } from '../../../common/Utils';
 
@@ -25,7 +26,8 @@ export default class SongList extends React.Component {
 
     return (
       <div className='songList'>
-        <img src={coverArtUrl} alr='coverart' onError={this.onError} />
+        <img src={coverArtUrl} alt='coverart' onError={this.onError} />
+        <SongListControllerWrapper />
         <Table>
           <tbody>
             {songItems}

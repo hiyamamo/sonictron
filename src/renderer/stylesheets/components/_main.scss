@@ -1,25 +1,6 @@
 .main {
-  padding: 10px;
+  margin-left: 30px;
 }
-.songList {
-  margin-top: 10px;
-}
-
-.songIcon {
-  padding: 0px 10px;
-  cursor: pointer;
-
-  &:active {
-    background-color: #000;
-  }
-}
-
-.songItem {
-  td {
-    font-size: 15px;
-  }
-}
-
 .albumList {
   overflow: hidden;
   margin-top: 10px;
@@ -60,5 +41,53 @@
     content: "";
     display: table;
     clear: both;
+  }
+}
+
+.songList {
+  margin-top: 10px;
+  img {
+    box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.4);
+    border: 1px solid #bbb;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  table {
+    clear: both;
+  }
+}
+
+.songIcon {
+  padding: 0px 10px;
+  cursor: pointer;
+
+  &:active {
+    background-color: #000;
+  }
+}
+
+.songItem {
+  td {
+    font-size: 15px;
+  }
+}
+
+.songListControllerWrapper {
+  margin-top: 5px;
+}
+
+.songListController {
+  font-size: 18px;
+  a {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #0066ff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .divider {
+    margin-left: 10px;
   }
 }

@@ -19,7 +19,7 @@ export default class Home extends Component {
         <Pane>
           <Main />
         </Pane>
-        <Pane className='pane-m'
+        <Pane className='pane-m'>
         </Pane>
       </Content>
     );

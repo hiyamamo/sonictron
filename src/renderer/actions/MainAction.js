@@ -33,6 +33,10 @@ export default class MainAction extends Action {
   changeMode(mode) {
     this.dispatch(MainConstants.CHANGE_MODE, mode);
   }
+
+  changeTitle(title) {
+    this.dispatch(MainConstants.SET_TITLE, title);
+  }
 }
 
 
