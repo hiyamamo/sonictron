@@ -17,7 +17,7 @@ export default class AlbumItem extends React.Component {
 
     const coverArtUrl = buildURL('getCoverArt', params, settings);
     return (
-      <div className='albumItem'>
+      <div title={this.props.title} className='albumItem'>
         <a href='#' onClick={this._handleClick.bind(this)} >
           <img src={coverArtUrl} alt='coverart' onError={this.onError} />
           <span>{this.props.title}</span>

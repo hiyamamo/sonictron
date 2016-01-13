@@ -1,3 +1,6 @@
+.main {
+  padding: 10px;
+}
 .songList {
   margin-top: 10px;
 }
@@ -14,5 +17,48 @@
 .songItem {
   td {
     font-size: 15px;
+  }
+}
+
+.albumList {
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.albumItem {
+  float: left;
+  margin: 0 15px 15px 0;
+  border: 1px solid #bbb;
+  width: 160px;
+  height: 200px;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  a {
+    cursor: pointer;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    color: #393939;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  img {
+    cursor: pointer;
+  }
+  span {
+    width: 100%;
+    margin-left: 15px;
+    white-space: nowrap;
+  }
+}
+
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
