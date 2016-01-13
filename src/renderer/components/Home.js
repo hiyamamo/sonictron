@@ -19,7 +19,7 @@ export default class Home extends Component {
         <Pane>
           <Main />
         </Pane>
-        <Pane ptSize='sm'>
+        <Pane className='pane-m'
         </Pane>
       </Content>
     );
