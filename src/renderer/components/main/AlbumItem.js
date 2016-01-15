@@ -1,21 +1,9 @@
 import React from 'react';
-import { buildURL } from '../../../common/Utils';
+import { getCoverArtURL } from '../../Utils';
 
 export default class AlbumItem extends React.Component {
   render() {
-    const settings = {
-      server: localStorage.server,
-      user: localStorage.user,
-      md5Digest: localStorage.md5Digest,
-      salt: localStorage.salt,
-    };
-
-    const params = {
-      id: this.props.art,
-      size: 160,
-    };
-
-    const coverArtUrl = buildURL('getCoverArt', params, settings);
+    const coverArtUrl = getCoverArtURL(this.props.art);
     return (
       <div title={this.props.title} className='albumItem'>
         <a href='#' onClick={this._handleClick.bind(this)} >
