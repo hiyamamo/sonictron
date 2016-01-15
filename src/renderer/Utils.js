@@ -25,3 +25,13 @@ export function getCoverArtURL(id) {
 
   return buildURL('getCoverArt', params, settings);
 }
+
+export function formatDuration(duration) {
+  let min = Math.floor(duration / 60);
+  let sec = duration % 60;
+
+  min = ('0' + min).slice(-2);
+  sec = ('0' + sec).slice(-2);
+
+  return min + ':' + sec;
+}

@@ -23,7 +23,7 @@ export default class Main extends Component {
   }
 
   componentWillUnmount() {
-    this.stores.artistPageStore.removeAllChangeListeners();
+    this.stores.mainStore.removeAllChangeListeners();
   }
 
   _onChange() {
@@ -66,6 +66,21 @@ export default class Main extends Component {
     console.log('play: ', id);
   }
 
+  _handleAddAllSongs2Q(ev) {
+    ev.preventDefault();
+    this.actions.mainAction.addAll2Queue(this.stores.mainStore.getSongs());
+  }
+
+  _handlePlayAllSongs(ev) {
+    ev.preventDefault();
+    console.log('play all');
+  }
+
+  _handlePlayRandom(ev) {
+    ev.preventDefault();
+    console.log('play random');
+  }
+
 
   render() {
     const songHandlers = {
@@ -73,6 +88,9 @@ export default class Main extends Component {
       addNext: this._handleAddSong2Next.bind(this),
       addFav: this._handleAddSong2Fav.bind(this),
       play: this._handlePlaySong.bind(this),
+      addAll: this._handleAddAllSongs2Q.bind(this),
+      playAll: this._handlePlayAllSongs.bind(this),
+      playRandom: this._handlePlayRandom.bind(this),
     };
     let albumList = <AlbumList albums={this.state.albums} onClick={this._handleClickAlbum.bind(this)} />;
     let songList = <SongList coverArt={this.state.coverArt} songs={this.state.songs} handlers={songHandlers} />;

@@ -1,6 +1,7 @@
 import { Action } from 'material-flux';
-import { MainConstants } from '../constants/Constants';
+import { MainConstants, QueueConstants } from '../constants/Constants';
 import IPCKeys from '../../common/IPCKeys';
+import { getStreamURL } from '../Utils';
 
 export default class MainAction extends Action {
   constructor(context) {
@@ -36,6 +37,18 @@ export default class MainAction extends Action {
 
   changeTitle(title) {
     this.dispatch(MainConstants.SET_TITLE, title);
+  }
+
+  addAll2Queue(songs) {
+    this._attachStreamURL2SongObjects(songs);
+    console.log(songs[0].url);
+    this.dispatch(QueueConstants.ADD_LAST, songs);
+  }
+
+  _attachStreamURL2SongObjects(songs) {
+    for (let i = 0; i < songs.length; ++i) {
+      songs[i].url = getStreamURL(songs[i].id);
+    }
   }
 }
 
