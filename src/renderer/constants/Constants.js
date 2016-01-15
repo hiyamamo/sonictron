@@ -15,6 +15,13 @@ export const MainConstants = keymirror({
   SET_COVERART: null,
 });
 
+export const QueueConstants = keymirror({
+  ADD_LAST: null,
+  ADD_NEXT: null,
+  CLEAR_ALL: null,
+  SHUFFLE: null,
+});
+
 export const ConfigConstants = keymirror({
   SAVE_CONFIG: null,
 });

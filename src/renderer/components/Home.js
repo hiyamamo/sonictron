@@ -6,6 +6,7 @@ import Config from './Config';
 import MusicPlayer from './MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
+import Queue from './queue/Queue';
 import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
 
 export default class Home extends Component {
@@ -20,6 +21,7 @@ export default class Home extends Component {
           <Main />
         </Pane>
         <Pane className='pane-m'>
+          <Queue />
         </Pane>
       </Content>
     );
