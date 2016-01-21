@@ -59,4 +59,9 @@ describe('QueueStore', function() {
     queueStore._putBackward();
     assert(queueStore.getNowPlaying() === 3);
   });
+
+  it('remove', () => {
+    queueStore._remove(1);
+    assert(queueStore.getQueue().toString() === [1,3].toString());
+  });
 });
