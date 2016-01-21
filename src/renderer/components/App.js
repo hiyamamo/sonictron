@@ -4,7 +4,7 @@ import React from 'react';
 
 import Provider from './Provider';
 import Config from './Config';
-import MusicPlayer from './MusicPlayer';
+import MusicPlayer from './musicPlayer/MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
 import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';

@@ -19,6 +19,8 @@ export const QueueConstants = keymirror({
   ADD_LAST: null,
   ADD_NEXT: null,
   CLEAR_ALL: null,
+  REMOVE: null,
+  SET_NOW_INDEX: null,
   SHUFFLE: null,
 });
 

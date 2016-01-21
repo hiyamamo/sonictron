@@ -41,7 +41,6 @@ export default class MainAction extends Action {
 
   addAll2Queue(songs) {
     this._attachStreamURL2SongObjects(songs);
-    console.log(songs[0].url);
     this.dispatch(QueueConstants.ADD_LAST, songs);
   }
 

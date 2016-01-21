@@ -1,0 +1,20 @@
+.musicPlayer {
+  .toggleOn span {
+    color: #66FFFF;
+  }
+  
+  .playerController {
+    vertical-align: middle;
+    padding-left: 10px;
+    &:active {
+      color: #66FFFF;
+    }
+  }
+  .icon {
+    font-size: 22px;
+  }
+  .icon-large {
+    font-size: 30px;
+  }
+}
+

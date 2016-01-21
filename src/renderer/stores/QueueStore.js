@@ -13,6 +13,8 @@ export default class QueueStore extends Store {
     this.register(QueueConstants.ADD_LAST, this._addLast);
     this.register(QueueConstants.ADD_NEXT, this._addNext);
     this.register(QueueConstants.CLEAR_ALL, this._clearAll);
+    this.register(QueueConstants.REMOVE, this._remove);
+    this.register(QueueConstants.SET_NOW_INDEX, this._setNowIndex);
   }
 
   getQueue() {
@@ -21,6 +23,12 @@ export default class QueueStore extends Store {
 
   getNowPlaying() {
     return this.state.queue[this.state.nowIndex];
+  }
+
+  _setNowIndex(index) {
+    this.setState({
+      nowIndex: index,
+    });
   }
 
   _putForward() {
@@ -75,7 +83,8 @@ export default class QueueStore extends Store {
   }
 
   _remove(idx) {
-    let q = this.state.queue.splice(idx, 1);
+    let q = this.state.queue;
+    q.splice(idx, 1);
     this.setState({
       queue: q,
     });

@@ -17,20 +17,34 @@ export default class MusicPlayerStore extends Store {
         artist: '',
         album: '',
       },
+      playing: false,
+      volume: 50,
     };
-    this.register(MusicPlayerConstants.PLAY_SONG, this.play);
-    this.register(MusicPlayerConstants.STOP, this.stop);
+    this.register(MusicPlayerConstants.PLAY_SONG, this._play);
+    this.register(MusicPlayerConstants.STOP, this._stop);
   }
 
-  play(song) {
+  playing() {
+    return this.state.playing;
+  }
+
+  _play(song) {
     this._audio = new Audio(song.url);
     this._sourceNode = this._audioContext.createMediaElementSource(this._audio);
     this._sourceNode.connect(this._audioContext.destination);
     this._audio.play();
+    this.setState({
+      song: song,
+      playing: true,
+    });
   }
 
-  stop() {
+  _stop() {
+    this._audio.pause();
     this._audio = null;
     this._sourceNode = null;
+    this.setState({
+      playing: false,
+    });
   }
 }

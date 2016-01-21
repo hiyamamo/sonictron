@@ -6,8 +6,8 @@ export default class SongListControllerWrapper extends React.Component {
     return (
       <div className='songListControllerWrapper'>
         <SongListController title='Play All' text='Play All' onClick={this.props.handlers.playAll}/>
-        <SongListController title='Play All' text='Add All' onClick={this.props.handlers.addAll}/>
-        <SongListController title='Play All' text='Random' last={true} onClick={this.props.handlers.playRandom} />
+        <SongListController title='Add All' text='Add All' onClick={this.props.handlers.addAll}/>
+        <SongListController title='Play Random' text='Play Random' last={true} onClick={this.props.handlers.playRandom} />
       </div>
     );
   }
