@@ -22,6 +22,8 @@ export default class MusicPlayerStore extends Store {
     };
     this.register(MusicPlayerConstants.PLAY_SONG, this._play);
     this.register(MusicPlayerConstants.STOP, this._stop);
+    this.register(MusicPlayerConstants.PAUSE, this._pause);
+    this.register(MusicPlayerConstants.RESUME, this._resume);
   }
 
   playing() {
@@ -29,12 +31,29 @@ export default class MusicPlayerStore extends Store {
   }
 
   _play(song) {
+    if (this.state.playing) {
+      this._audio.pause();
+    }
     this._audio = new Audio(song.url);
     this._sourceNode = this._audioContext.createMediaElementSource(this._audio);
     this._sourceNode.connect(this._audioContext.destination);
     this._audio.play();
     this.setState({
       song: song,
+      playing: true,
+    });
+  }
+
+  _pause() {
+    this._audio.pause();
+    this.setState({
+      playing: false,
+    });
+  }
+
+  _resume() {
+    this._audio.play();
+    this.setState({
       playing: true,
     });
   }

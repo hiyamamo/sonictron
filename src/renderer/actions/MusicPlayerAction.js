@@ -8,10 +8,16 @@ export default class MusicPlayerAction extends Action {
     this._audio = null;
   }
 
+  play(song) {
+    this.dispatch(MusicPlayerConstants.PLAY_SONG, song);
+  }
+
   resume() {
+    this.dispatch(MusicPlayerConstants.RESUME);
   }
 
   pause() {
+    this.dispatch(MusicPlayerConstants.PAUSE);
   }
 
   stop() {

@@ -15,6 +15,8 @@ export default class QueueStore extends Store {
     this.register(QueueConstants.CLEAR_ALL, this._clearAll);
     this.register(QueueConstants.REMOVE, this._remove);
     this.register(QueueConstants.SET_NOW_INDEX, this._setNowIndex);
+    this.register(QueueConstants.NEXT_SONG, this._putForward);
+    this.register(QueueConstants.PREV_SONG, this._putBackward);
   }
 
   getQueue() {
@@ -23,6 +25,24 @@ export default class QueueStore extends Store {
 
   getNowPlaying() {
     return this.state.queue[this.state.nowIndex];
+  }
+
+  getNextSong() {
+    let nIdx = this.state.nowIndex + 1;
+
+    if (nIdx >= this.state.queue.length) {
+      nIdx = 0;
+    }
+    return this.state.queue[nIdx];
+  }
+
+  getPrevSong() {
+    let pIdx = this.state.nowIndex - 1;
+    if (pIdx < 0) {
+      pIdx = this.state.queue.length - 1;
+    }
+
+    return this.state.queue[pIdx];
   }
 
   _setNowIndex(index) {

@@ -16,4 +16,12 @@ export default class QueueAction extends Action {
     this.dispatch(MusicPlayerConstants.PLAY_SONG, song);
     this.dispatch(QueueConstants.SET_NOW_INDEX, idx);
   }
+
+  next() {
+    this.dispatch(QueueConstants.NEXT_SONG);
+  }
+
+  prev() {
+    this.dispatch(QueueConstants.PREV_SONG);
+  }
 }
