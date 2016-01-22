@@ -21,7 +21,7 @@ export default class App extends React.Component {
     return (
       <Provider context={this._context} >
         <Window>
-          <Toolbar title="Sonictron">
+          <Toolbar>
             <Actionbar>
               <MusicPlayer />
               <Link to='config'>Config</Link>

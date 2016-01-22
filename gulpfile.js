@@ -16,7 +16,7 @@ function compileJS() {
     presets: ['es2015', 'react'],
   }))
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('dist'))
 }
 
 function compileStyles() {
@@ -25,7 +25,7 @@ function compileStyles() {
   .pipe(sourcemaps.init())
   .pipe(sass())
   .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('dist'))
 }
 
 function copyHtml() {

@@ -3,7 +3,6 @@
 import React from 'react';
 import Component from './Component';
 import Config from './Config';
-import MusicPlayer from './MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
 import Queue from './queue/Queue';

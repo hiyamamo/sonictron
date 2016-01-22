@@ -18,6 +18,7 @@ export default class MusicPlayerStore extends Store {
         album: '',
       },
       playing: false,
+      time: 0,
       volume: 50,
     };
     this.register(MusicPlayerConstants.PLAY_SONG, this._play);
@@ -30,11 +31,20 @@ export default class MusicPlayerStore extends Store {
     return this.state.playing;
   }
 
+  currentTime() {
+    return this.state.time;
+  }
+
   _play(song) {
     if (this.state.playing) {
       this._audio.pause();
     }
     this._audio = new Audio(song.url);
+    this._audio.addEventListener('timeupdate', () => {
+      this.setState({
+        time: this._audio.currentTime,
+      });
+    });
     this._sourceNode = this._audioContext.createMediaElementSource(this._audio);
     this._sourceNode.connect(this._audioContext.destination);
     this._audio.play();

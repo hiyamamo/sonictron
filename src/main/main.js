@@ -14,7 +14,13 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
 
-  mainWindow = new BrowserWindow({ width: 1150, height: 840, 'title-bar-style': 'hidden', });
+  mainWindow = new BrowserWindow({
+    width: 1420,
+    height: 840,
+    minWidth: 1420,
+    'title-bar-style': 'hidden',
+    autoHideMenuBar: true,
+  });
   mainWindow.loadURL('file://' + __dirname + '/../renderer/index.html');
 
   mainWindow.on('closed', function() {

@@ -2,6 +2,8 @@ import Component from '../Component';
 import React from 'react';
 import Controller from './Controller';
 import Volume from './Volume';
+import CoverArt from '../common/CoverArt';
+import TimeSlider from './TimeSlider';
 
 export default class MusicPlayer extends Component {
   constructor(...args) {
@@ -12,6 +14,7 @@ export default class MusicPlayer extends Component {
     this.state = {
       song: {},
       playing: false,
+      time: 0,
     };
   }
 
@@ -28,11 +31,12 @@ export default class MusicPlayer extends Component {
     let store = this.stores.musicPlayerStore;
     this.setState({
       playing: store.playing(),
+      time: store.currentTime(),
     });
   }
 
   _onChangeQueue() {
-    const newSong = this.stores.queueStore.getNowPlaying();
+    const newSong = this.stores.queueStore.getNowPlaying() || {}; 
     this.setState({
       song: newSong,
     });
@@ -48,10 +52,24 @@ export default class MusicPlayer extends Component {
     
     return (
       <div className='musicPlayer'>
-        <Controller glyph='fast-backward' onClick={this._handlePrev.bind(this)} />
-        <Controller ptSize='large' onClick={this._handlePlayOrPause.bind(this)} glyph={glyph} />
-        <Controller glyph='fast-forward' onClick={this._handleNext.bind(this)} />
-        <Volume />
+        <div className='playerControllers'>
+          <Controller className='shuffle' glyph='shuffle' />
+          <Controller className='prev' glyph='fast-backward' onClick={this._handlePrev.bind(this)} />
+          <Controller className='playPause' ptSize='large' onClick={this._handlePlayOrPause.bind(this)} glyph={glyph} />
+          <Controller className='next' glyph='fast-forward' onClick={this._handleNext.bind(this)} />
+          <Controller className='loop' glyph='loop' />
+          <Volume />
+        </div>
+        <div className='songDisplay'>
+          <CoverArt id={this.state.song.coverArt} size='mini' />
+          <div>
+            <div className='songinfo'>
+              <p>{this.state.song.title}</p>
+              <p>{this.state.song.artist}</p>
+            </div>
+            <TimeSlider time={this.state.time} duration={this.state.song.duration} />
+          </div>
+        </div>
       </div>
     );
   }

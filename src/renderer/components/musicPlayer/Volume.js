@@ -4,9 +4,9 @@ export default class Volume extends React.Component {
 
   render() {
     return (
-      <div className='volume'>
-        <input type='range' min='0' max='100' />
-      </div>
+      <span className='volume'>
+        <input type='range' min='0' max='100' defaultValue='20' />
+      </span>
     );
   }
 }

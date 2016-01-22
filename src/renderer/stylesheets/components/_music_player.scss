@@ -1,20 +1,114 @@
 .musicPlayer {
+  overflow: hidden;
+  margin-top: 10px;
+
   .toggleOn span {
     color: #66FFFF;
   }
-  
-  .playerController {
-    vertical-align: middle;
-    padding-left: 10px;
-    &:active {
-      color: #66FFFF;
+
+  .playerControllers {
+    float: left;
+    margin-left: 20px;
+    margin-right: 62px;
+
+    .playerController {
+      vertical-align: middle;
+      padding-left: 10px;
+      &:active {
+        color: #66FFFF;
+      }
+    }
+
+    .prev {
+      margin-left: 20px;
+      font-size: 32px;
+    }
+
+    .next {
+      margin-right: 20px;
+      font-size: 32px;
+    }
+
+    .playPause {
+      margin: 0 10px;
+      font-size: 60px;
+    }
+
+    .shuffle {
+      font-size: 22px;
+    }
+
+    .loop {
+      font-size: 22px;
+    }
+
+    .volume {
+      margin-left: 50px;
     }
   }
-  .icon {
-    font-size: 22px;
-  }
-  .icon-large {
-    font-size: 30px;
+
+  .songDisplay {
+    overflow: hidden;
+    background-color: #FFFFF0;
+    width: 800px;
+    position: relative;
+    border-radius: 8px;
+
+    .coverart {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .coverart-mini {
+      width: 100px;
+      height: 100px;
+    }
+
+    .timeSlider {
+      position: absolute;
+      bottom: 0px;
+      left: 120px;
+
+      span {
+        margin-right: 20px;
+        vertical-align: middle;
+      }
+      .duration {
+        position: absolute;
+        left: 630px;
+      }
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(0,0,0,0.3);
+      height: 8px;
+      width: 600px;
+      bottom: 20px;
+      position:absolute;
+      left:32px;
+      border-radius: 3px;
+      &:focus {
+        outline:none;
+      }
+      &::-webkit-slider-thumb{
+          -webkit-appearance: none;
+          appearance: none;
+          background: #4d4d4d;
+          width: 16px;
+          height: 16px;
+          border-radius:20px;
+          cursor:pointer;
+          -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+          margin-bottom: 2px;
+      }
+    }
+
+    .songinfo {
+      margin-top: 10px;
+    }
+
   }
 }
-

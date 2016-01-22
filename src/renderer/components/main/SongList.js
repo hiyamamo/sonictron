@@ -3,6 +3,7 @@ import SongItem from './SongItem'
 import SongListControllerWrapper from './SongListControllerWrapper';
 import { Table } from 'react-photonkit';
 import { getCoverArtURL } from '../../Utils';
+import CoverArt from '../common/CoverArt';
 
 export default class SongList extends React.Component {
   render() {
@@ -14,7 +15,7 @@ export default class SongList extends React.Component {
 
     return (
       <div className='songList'>
-        <img src={coverArtUrl} alt='coverart' onError={this.onError} />
+        <CoverArt id={this.props.coverArt} />
         <SongListControllerWrapper handlers={this.props.handlers} />
         <Table>
           <tbody>
@@ -23,10 +24,6 @@ export default class SongList extends React.Component {
         </Table>
       </div>
     );
-  }
-
-  onError(ev) {
-    ev.target.src = '../../images/albumdefault.jpg';
   }
 
 }

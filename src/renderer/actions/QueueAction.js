@@ -6,6 +6,7 @@ export default class QueueAction extends Action {
 
   clearAllQueue() {
     this.dispatch(QueueConstants.CLEAR_ALL);
+    this.dispatch(MusicPlayerConstants.STOP);
   }
 
   remove(index) {
