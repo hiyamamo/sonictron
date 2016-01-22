@@ -82,8 +82,10 @@
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
-      background: rgba(0,0,0,0.3);
-      height: 8px;
+      background: #EEE;
+      border: 1px solid #EEE;
+      box-shadow: -1px -1px 1px rgba(000,000,000,0.3), 1px 1px 1px rgba(255,255,255, 1);
+      height: 6px;
       width: 600px;
       bottom: 20px;
       position:absolute;
@@ -95,7 +97,7 @@
       &::-webkit-slider-thumb{
           -webkit-appearance: none;
           appearance: none;
-          background: #4d4d4d;
+          background: #BBB;
           width: 16px;
           height: 16px;
           border-radius:20px;
