@@ -5,7 +5,6 @@ import MainStore from './stores/MainStore';
 import SidebarStore from './stores/SidebarStore';
 import QueueStore from './stores/QueueStore';
 import ConfigStore from './stores/ConfigStore';
-import MusicPlayerStore from './stores/MusicPlayerStore';
 
 import MainAction from './actions/MainAction';
 import SidebarAction from './actions/SidebarAction';
@@ -24,7 +23,6 @@ export default class AppContext extends Context {
       sidebarStore: new SidebarStore(this),
       queueStore: new QueueStore(this),
       configStore: new ConfigStore(this),
-      musicPlayerStore: new MusicPlayerStore(this),
     };
 
 

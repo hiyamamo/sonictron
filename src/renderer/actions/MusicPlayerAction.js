@@ -1,6 +1,6 @@
 import { Action } from 'material-flux';
 import IPCKeys from '../../common/IPCKeys';
-import { MusicPlayerConstants } from '../constants/Constants';
+import { QueueConstants } from '../constants/Constants';
 
 export default class MusicPlayerAction extends Action {
   constructor(context) {
@@ -9,25 +9,19 @@ export default class MusicPlayerAction extends Action {
   }
 
   play(song) {
-    this.dispatch(MusicPlayerConstants.PLAY_SONG, song);
+    this.dispatch(QueueConstants.PLAY_SONG, song);
   }
 
   resume() {
-    this.dispatch(MusicPlayerConstants.RESUME);
+    this.dispatch(QueueConstants.RESUME);
   }
 
   pause() {
-    this.dispatch(MusicPlayerConstants.PAUSE);
+    this.dispatch(QueueConstants.PAUSE);
   }
 
   stop() {
-    this.dispatch(MusicPlayerConstants.STOP);
-  }
-
-  next() {
-  }
-
-  prev() {
+    this.dispatch(QueueConstants.STOP);
   }
 
 }

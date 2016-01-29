@@ -42,11 +42,17 @@ export default class Main extends Component {
     this.actions.queueAction.play(song, index);
   }
 
+  _handleShuffle(ev) {
+    ev.preventDefault();
+    this.actions.queueAction.shuffle();
+  }
+
   render() {
     const handlers = {
       onPlay: this._handlePlay.bind(this),
       onClearAll: this._handleClearAll.bind(this),
       onRemove: this._handleRemove.bind(this),
+      onShuffle: this._handleShuffle.bind(this),
     };
     return (
       <div className='queue'>

@@ -19,25 +19,19 @@ export default class MusicPlayer extends Component {
   }
 
   componentDidMount() {
-    this.stores.musicPlayerStore.onChange(this._onChange.bind(this));
-    this.stores.queueStore.onChange(this._onChangeQueue.bind(this));
+    this.stores.queueStore.onChange(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    this.stores.musicPlayerStore.removeAllChangeListeners();
+    this.stores.queueStore.removeAllChangeListeners();
   }
 
   _onChange() {
-    let store = this.stores.musicPlayerStore;
+    let store = this.stores.queueStore;
+    const newSong = store.getNowPlaying() || {}; 
     this.setState({
       playing: store.playing(),
       time: store.currentTime(),
-    });
-  }
-
-  _onChangeQueue() {
-    const newSong = this.stores.queueStore.getNowPlaying() || {}; 
-    this.setState({
       song: newSong,
     });
   }
@@ -53,7 +47,6 @@ export default class MusicPlayer extends Component {
     return (
       <div className='musicPlayer'>
         <div className='playerControllers'>
-          <Controller className='shuffle' glyph='shuffle' />
           <Controller className='prev' glyph='fast-backward' onClick={this._handlePrev.bind(this)} />
           <Controller className='playPause' ptSize='large' onClick={this._handlePlayOrPause.bind(this)} glyph={glyph} />
           <Controller className='next' glyph='fast-forward' onClick={this._handleNext.bind(this)} />
