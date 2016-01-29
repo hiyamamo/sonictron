@@ -1,5 +1,7 @@
 import Component from './Component';
 import React from 'react';
+import { Link } from 'react-router';
+import { Button } from 'react-photonkit';
 
 export default class Config extends Component {
   constructor(...args) {
@@ -59,6 +61,7 @@ export default class Config extends Component {
         <p>password</p>
         <input type="password" onChange={this._onPasswordChange.bind(this)} value={this.state.password} ></input>
         <button onClick={this._handleSave.bind(this)} >save</button>
+        <Link to='/'><Button text='Home' /></Link>
       </div>
     );
   }

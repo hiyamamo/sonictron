@@ -10,11 +10,11 @@ export default class Main extends Component {
     this.stores = this.context.stores;
 
     this.state = {
-      mode: 'none',
-      title: '',
-      albums: [],
-      songs: [],
-      coverArt: '',
+      title: this.stores.mainStore.getTitle(),
+      albums: this.stores.mainStore.getAlbums(),
+      songs: this.stores.mainStore.getSongs(),
+      mode: this.stores.mainStore.getMode(),
+      coverArt: this.stores.mainStore.getCoverArt(),
     };
   }
 

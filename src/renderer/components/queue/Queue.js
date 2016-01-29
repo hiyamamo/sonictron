@@ -3,14 +3,14 @@ import React from 'react';
 import QueueList from './QueueList';
 import QueueControllerWrapper from './QueueControllerWrapper';
 
-export default class Main extends Component {
+export default class Queue extends Component {
   constructor(...args) {
     super(...args);
     this.actions = this.context.actions;
     this.stores = this.context.stores;
     this.state = {
-      songs: [],
-      nowSong: {},
+      songs: this.stores.queueStore.getQueue(),
+      nowSong: this.stores.queueStore.getNowPlaying(),
     };
   }
 
