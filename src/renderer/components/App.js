@@ -7,9 +7,7 @@ import Config from './Config';
 import MusicPlayer from './musicPlayer/MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
-import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
 import AppContext from '../AppContext';
-import Navigation from './Navigation'
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -24,9 +22,7 @@ export default class App extends React.Component {
     };
     return (
       <Provider context={this._context} >
-        <Window>
-          {this.props.children}
-        </Window>
+        {this.props.children}
       </Provider>
     );
   }

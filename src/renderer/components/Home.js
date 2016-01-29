@@ -14,7 +14,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
+      <Window>
         <Toolbar>
           <Actionbar>
             <MusicPlayer />
@@ -32,7 +32,7 @@ export default class Home extends Component {
             <Queue />
           </Pane>
         </Content>
-      </div>
+      </Window>
     );
   }
 
