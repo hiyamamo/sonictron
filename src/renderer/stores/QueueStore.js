@@ -62,6 +62,10 @@ export default class QueueStore extends Store {
     return this.state.song;
   }
 
+  nowIndex() {
+    return this.state.nowIndex;
+  }
+
   getVolume() {
     return this.state.volume;
   }
@@ -239,18 +243,23 @@ export default class QueueStore extends Store {
   _shuffle() {
     let q = this.state.queue;
     const n = q.length;
+    const nowId = this.state.song.id;
 
     for (let i = (n-1); i >= 0; i--) {
       const r = Math.floor(Math.random() * (i+1));
       const tmp = q[i];
       q[i] = q[r];
       q[r] = tmp;
-      if ( i === this.state.nowIndex) {
+    }
+
+    for (let i = 0; i < q.length; i++) {
+      if (q[i].id === nowId) {
         this.setState({
-          nowIndex: r
+          nowIndex: i,
         });
       }
     }
+
     this.setState({
       queue: q
     });

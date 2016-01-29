@@ -25,5 +25,9 @@ a {
 }
 
 .pane-m {
-  max-width: 350px;
+  max-width: 400px;
+  min-width: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex: 1;
 }

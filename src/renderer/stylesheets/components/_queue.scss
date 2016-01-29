@@ -1,15 +1,37 @@
 .queue {
+  width: 100%;
+  box-sizing:border-box;
+
   .queueTitle {
-    margin: 0 auto;
+    text-align: center;
   }
-}
-.queueItem {
-  td {
-    width: 250px;
+
+  .queueControllerWrapper {
+    width: 100px; 
+    margin-left: auto;
+    margin-bottom: 20px;
   }
-}
-.queueList { 
+
+  .queueController {
+    margin-left: 8px;
+  }
+
   table {
-    width: 350px;
+    table-layout: fixed;
+    width: 100%;
+
+    td.queueIcon {
+      width: 5px;
+    }
+
+    td.queueTitle {
+      width: 260px;
+    }
+
+    td.queueDuration {
+      width: 100px;
+    }
+
   }
 }
+

@@ -10,6 +10,7 @@ export default class Main extends Component {
     this.stores = this.context.stores;
     this.state = {
       songs: [],
+      nowSong: {},
     };
   }
 
@@ -25,6 +26,7 @@ export default class Main extends Component {
     const store = this.stores.queueStore;
     this.setState({
       songs: store.getQueue(),
+      nowSong: store.getNowPlaying(),
     });
   }
 
@@ -58,7 +60,7 @@ export default class Main extends Component {
       <div className='queue'>
         <p className='queueTitle'>Queue</p>
         <QueueControllerWrapper handlers={handlers} />
-        <QueueList songs={this.state.songs} handlers={handlers} />
+        <QueueList nowSong={this.state.nowSong} songs={this.state.songs} handlers={handlers} />
       </div>
     );
   }
