@@ -14,6 +14,7 @@ export default class MusicPlayer extends Component {
     this.state = {
       song: {},
       playing: false,
+      volume: this.stores.queueStore.getVolume(),
       time: 0,
     };
   }
@@ -51,7 +52,7 @@ export default class MusicPlayer extends Component {
           <Controller className='playPause' ptSize='large' onClick={this._handlePlayOrPause.bind(this)} glyph={glyph} />
           <Controller className='next' glyph='fast-forward' onClick={this._handleNext.bind(this)} />
           <Controller className='loop' glyph='loop' />
-          <Volume />
+          <Volume value={this.state.volume} onChange={this._handleVolumeChange.bind(this)} />
         </div>
         <div className='songDisplay'>
           <CoverArt id={this.state.song.coverArt} size='mini' />
@@ -60,7 +61,7 @@ export default class MusicPlayer extends Component {
               <p>{this.state.song.title}</p>
               <p>{this.state.song.artist}</p>
             </div>
-            <TimeSlider time={this.state.time} duration={this.state.song.duration} />
+            <TimeSlider time={this.state.time} duration={this.state.song.duration} onChange={this._handleTimeSliderChange.bind(this)} />
           </div>
         </div>
       </div>
@@ -83,7 +84,6 @@ export default class MusicPlayer extends Component {
     const { queueStore } = this.stores;
     const nextSong = queueStore.getNextSong();
     queueAction.next();
-    musicPlayerAction.play(nextSong);
   }
   
   _handlePrev(ev) {
@@ -92,7 +92,14 @@ export default class MusicPlayer extends Component {
     const { queueStore } = this.stores;
     const prevSong = queueStore.getPrevSong();
     queueAction.prev();
-    musicPlayerAction.play(prevSong);
+  }
+
+  _handleVolumeChange(ev) {
+    this.actions.musicPlayerAction.changeVolume(ev.target.value);
+  }
+
+  _handleTimeSliderChange(ev) {
+    this.actions.musicPlayerAction.seek(ev.target.value);
   }
 
 }

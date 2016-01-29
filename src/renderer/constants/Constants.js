@@ -26,9 +26,12 @@ export const QueueConstants = keymirror({
   PREV_SONG: null,
   SHUFFLE: null,
   PLAY_SONG: null,
+  PLAY_FIRST: null,
   STOP: null,
   PAUSE: null,
   RESUME: null,
+  CHANGE_VOLUME: null,
+  SEEK: null,
 });
 
 export const ConfigConstants = keymirror({

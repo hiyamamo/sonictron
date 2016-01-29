@@ -20,18 +20,18 @@ export default class SongItem extends React.Component {
   }
 
   _handleAddFav(ev) {
-    this.props.handlers.addFav(ev, this.props.song.id);
+    this.props.handlers.addFav(ev, this.props.song);
   }
 
   _handlePlay(ev) {
-    this.props.handlers.play(ev, this.props.song.id);
+    this.props.handlers.play(ev, this.props.song);
   }
 
   _handleAddLast(ev) {
-    this.props.handlers.addLast(ev, this.props.song.id);
+    this.props.handlers.addLast(ev, this.props.song);
   }
 
   _handleAddNext(ev) {
-    this.props.handlers.addNext(ev, this.props.song.id);
+    this.props.handlers.addNext(ev, this.props.song);
   }
 }

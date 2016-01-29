@@ -5,26 +5,15 @@ export default class QueueStore extends Store {
   constructor(context) {
     super(context);
 
-    this.state = {
-      queue: [],
-      nowIndex: 0,
-      song: {
-        id: null,
-        name: '',
-        url: '',
-        artist: '',
-        album: '',
-      },
-      playing: false,
-      time: 0,
-      volume: 50,
-    };
+    this._initState();
 
     this._audioContext = new window.AudioContext();
     this._audio = null;
     this._sourceNode = null;
+    this._gainNode = null;
 
     this.register(QueueConstants.PLAY_SONG, this._play);
+    this.register(QueueConstants.PLAY_FIRST, this._play1st);
     this.register(QueueConstants.STOP, this._stop);
     this.register(QueueConstants.PAUSE, this._pause);
     this.register(QueueConstants.RESUME, this._resume);
@@ -36,6 +25,25 @@ export default class QueueStore extends Store {
     this.register(QueueConstants.NEXT_SONG, this._putForward);
     this.register(QueueConstants.PREV_SONG, this._putBackward);
     this.register(QueueConstants.SHUFFLE, this._shuffle);
+    this.register(QueueConstants.CHANGE_VOLUME, this._changeVolume);
+    this.register(QueueConstants.SEEK, this._seek);
+  }
+
+  _initState() {
+    this.setState({
+      queue: [],
+      nowIndex: 0,
+      song: {
+        id: null,
+        name: '',
+        url: '',
+        artist: '',
+        album: '',
+      },
+      playing: false,
+      time: 0,
+      volume: localStorage.volume || 50,
+    });
   }
 
   playing() {
@@ -51,7 +59,11 @@ export default class QueueStore extends Store {
   }
 
   getNowPlaying() {
-    return this.state.queue[this.state.nowIndex];
+    return this.state.song;
+  }
+
+  getVolume() {
+    return this.state.volume;
   }
 
   getNextSong() {
@@ -75,6 +87,7 @@ export default class QueueStore extends Store {
   _play(song) {
     if (this.state.playing) {
       this._audio.pause();
+      this._audio.src = '';
     }
     this._audio = new Audio(song.url);
 
@@ -82,18 +95,43 @@ export default class QueueStore extends Store {
     this._audio.addEventListener('ended', this._putForward.bind(this));
 
     this._sourceNode = this._audioContext.createMediaElementSource(this._audio);
-    this._sourceNode.connect(this._audioContext.destination);
+    this._gainNode = this._audioContext.createGain();
+    this._sourceNode.connect(this._gainNode);
+    this._gainNode.connect(this._audioContext.destination);
+    this._gainNode.gain.value = this.state.volume / 100;
+
     this._audio.play();
+
     this.setState({
       song: song,
       playing: true,
     });
   }
 
-  _onUpdateTime() {
+  _seek(val) {
+    if (this._audio.buffered.end(0) >= val){
+      this._audio.currentTime = val;
+    }
+  }
+
+  _play1st() {
+    this._play(this.state.queue[0]);
+  }
+
+  _changeVolume(val) {
     this.setState({
-      time: this._audio.currentTime,
+      volume: val
     });
+    this._gainNode.gain.value = val / 100;
+    localStorage.volume = val;
+  }
+
+  _onUpdateTime() {
+    if (this._audio) {
+      this.setState({
+        time: this._audio.currentTime,
+      });
+    }
   }
 
   _pause() {
@@ -111,13 +149,17 @@ export default class QueueStore extends Store {
   }
 
   _stop() {
-    this._audio.pause();
-    this._audio = null;
-    this._sourceNode = null;
-    this.setState({
-      playing: false,
-    });
+    if (this._audio) {
+      this._audio.pause();
+      this._audio.src = '';
+      this._audio = null;
+      this._sourceNode = null;
+      this.setState({
+        playing: false,
+      });
+    }
   }
+
   _setNowIndex(index) {
     this.setState({
       nowIndex: index,
@@ -191,9 +233,7 @@ export default class QueueStore extends Store {
   }
 
   _clearAll() {
-    this.setState({
-      queue: [],
-    });
+    this._initState();
   }
 
   _shuffle() {
@@ -211,9 +251,9 @@ export default class QueueStore extends Store {
         });
       }
     }
-
     this.setState({
       queue: q
     });
   }
+
 }

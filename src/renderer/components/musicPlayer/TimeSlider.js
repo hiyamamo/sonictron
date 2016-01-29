@@ -8,7 +8,7 @@ export default class TimeSlider extends React.Component {
     return (
       <div className='timeSlider'>
         <span>{time}</span>
-        <input type='range' min='0' max={duration} value={Math.floor(this.props.time)} />
+        <input type='range' min='0' max={this.props.duration} value={Math.floor(this.props.time)} onChange={this.props.onChange} />
         <span className='duration'>{duration}</span>
       </div>
     );

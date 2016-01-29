@@ -5,8 +5,8 @@ import { QueueConstants, } from '../constants/Constants';
 export default class QueueAction extends Action {
 
   clearAllQueue() {
-    this.dispatch(QueueConstants.CLEAR_ALL);
     this.dispatch(QueueConstants.STOP);
+    this.dispatch(QueueConstants.CLEAR_ALL);
   }
 
   remove(index) {

@@ -39,14 +39,47 @@ export default class MainAction extends Action {
     this.dispatch(MainConstants.SET_TITLE, title);
   }
 
-  addAll2Queue(songs) {
+  addLast2Q(song) {
+    this._attachStreamURL2SongObjects(song);
+    this.dispatch(QueueConstants.ADD_LAST, song);
+  }
+
+  addNext2Q(song) {
+    this.dispatch(QueueConstants.ADD_NEXT, song);
+  }
+
+  playSong(song) {
+    this._attachStreamURL2SongObjects(song);
+    this.dispatch(QueueConstants.STOP);
+    this.dispatch(QueueConstants.CLEAR_ALL);
+    this.dispatch(QueueConstants.ADD_LAST, song);
+    this.dispatch(QueueConstants.PLAY_SONG, song);
+  }
+
+  playAllSongs(songs) {
     this._attachStreamURL2SongObjects(songs);
+    this.dispatch(QueueConstants.STOP);
+    this.dispatch(QueueConstants.CLEAR_ALL);
     this.dispatch(QueueConstants.ADD_LAST, songs);
+    this.dispatch(QueueConstants.PLAY_FIRST);
+  }
+
+  playRandom(songs) {
+    this._attachStreamURL2SongObjects(songs);
+    this.dispatch(QueueConstants.STOP);
+    this.dispatch(QueueConstants.CLEAR_ALL);
+    this.dispatch(QueueConstants.ADD_LAST, songs);
+    this.dispatch(QueueConstants.SHUFFLE);
+    this.dispatch(QueueConstants.PLAY_FIRST);
   }
 
   _attachStreamURL2SongObjects(songs) {
-    for (let i = 0; i < songs.length; ++i) {
-      songs[i].url = getStreamURL(songs[i].id);
+    if (songs.length) {
+      for (let i = 0; i < songs.length; ++i) {
+        songs[i].url = getStreamURL(songs[i].id);
+      }
+    } else {
+      songs.url = getStreamURL(songs.id);
     }
   }
 }

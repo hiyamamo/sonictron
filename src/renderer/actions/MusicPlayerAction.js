@@ -24,4 +24,12 @@ export default class MusicPlayerAction extends Action {
     this.dispatch(QueueConstants.STOP);
   }
 
+  changeVolume(val) {
+    this.dispatch(QueueConstants.CHANGE_VOLUME, val);
+  }
+
+  seek(val) {
+    this.dispatch(QueueConstants.SEEK, val);
+  }
+
 }

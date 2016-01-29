@@ -46,39 +46,39 @@ export default class Main extends Component {
     this.actions.mainAction.changeTitle(albumName);
   }
 
-  _handleAddSong2Next(ev, id) {
+  _handleAddSong2Next(ev, song) {
     ev.preventDefault();
-    console.log('add next: ', id);
+    this.actions.mainAction.addNext2Q(song);
   }
 
-  _handleAddSong2Last(ev, id) {
+  _handleAddSong2Last(ev, song) {
     ev.preventDefault();
-    console.log('add last: ', id);
+    this.actions.mainAction.addLast2Q(song);
   }
 
-  _handleAddSong2Fav(ev, id) {
+  _handleAddSong2Fav(ev, song) {
     ev.preventDefault();
-    console.log('add fav: ', id);
+    console.log('add fav: ', song);
   }
 
-  _handlePlaySong(ev, id) {
+  _handlePlaySong(ev, song) {
     ev.preventDefault();
-    console.log('play: ', id);
+    this.actions.mainAction.playSong(song);
   }
 
   _handleAddAllSongs2Q(ev) {
     ev.preventDefault();
-    this.actions.mainAction.addAll2Queue(this.stores.mainStore.getSongs());
+    this.actions.mainAction.addLast2Q(this.stores.mainStore.getSongs());
   }
 
   _handlePlayAllSongs(ev) {
     ev.preventDefault();
-    console.log('play all');
+    this.actions.mainAction.playAllSongs(this.state.songs);
   }
 
   _handlePlayRandom(ev) {
     ev.preventDefault();
-    console.log('play random');
+    this.actions.mainAction.playRandom(this.state.songs);
   }
 
 
