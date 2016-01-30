@@ -1,3 +1,4 @@
+$playedColor: #4682b4;
 .musicPlayer {
   overflow: hidden;
   margin-top: 10px;
@@ -46,7 +47,47 @@
     }
 
     .volume {
-      margin-left: 50px;
+      margin-left: 40px;
+      display: inline-block;
+      width: 120px;
+      position: relative;
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: #a9a9a9;
+        height: 6px;
+        width: 120px;
+        position: absolute;
+        left: 0px;
+        bottom: 4px;
+        border-radius: 3px;
+        &:focus {
+          outline:none;
+        }
+        &::-webkit-slider-thumb{
+          -webkit-appearance: none;
+          appearance: none;
+          background: #ffffff;
+          width: 12px;
+          height: 12px;
+          border-radius: 20px;
+          cursor:pointer;
+          -webkit-box-sizing:border-box;
+          box-sizing:border-box;
+        }
+      }
+
+      .actual {
+        position:: absolute;
+        bottom: 4px;
+        left: 0px;
+        width: 0px;
+        height: 6px;
+        background: #808080;
+        border-radius: 3px;
+        z-index: 1;
+      }
     }
   }
 
@@ -68,18 +109,24 @@
     }
 
     .timeSlider {
+      width: 700px;
       position: absolute;
       bottom: 0px;
-      left: 120px;
+      left: 100px;
 
       span {
-        margin-right: 20px;
         vertical-align: middle;
       }
+
+      .time {
+        margin-left: 6px;
+      }
+
       .duration {
         position: absolute;
-        left: 630px;
+        right: 6px;
       }
+
     }
 
     input[type="range"] {
@@ -87,28 +134,36 @@
       appearance: none;
       background: #EEE;
       border: 1px solid #EEE;
-      box-shadow: -1px -1px 1px rgba(000,000,000,0.3), 1px 1px 1px rgba(255,255,255, 1);
       height: 6px;
-      width: 600px;
+      width: 700px;
       bottom: 20px;
-      position:absolute;
-      left:32px;
+      position: absolute;
+      left: 0px;
       border-radius: 3px;
       &:focus {
         outline:none;
       }
       &::-webkit-slider-thumb{
-          -webkit-appearance: none;
-          appearance: none;
-          background: #BBB;
-          width: 16px;
-          height: 16px;
-          border-radius:20px;
-          cursor:pointer;
-          -webkit-box-sizing:border-box;
-          box-sizing:border-box;
-          margin-bottom: 2px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: $playedColor;
+        width: 0px;
+        height: 12px;
+        cursor:pointer;
+        -webkit-box-sizing:border-box;
+        box-sizing:border-box;
+        z-index: 2;
       }
+    }
+
+    .playedSlider {
+      position:: absolute;
+      bottom: 20px;
+      left: 0px;
+      width: 0;
+      height: 6px;
+      background: $playedColor;
+      z-index: 1;
     }
 
     .songinfo {

@@ -34,6 +34,7 @@ export default class MusicPlayer extends Component {
       playing: store.playing(),
       time: store.currentTime(),
       song: newSong,
+      volume: store.getVolume(),
     });
   }
 
@@ -44,7 +45,7 @@ export default class MusicPlayer extends Component {
     } else {
       glyph = 'play';
     }
-    
+
     return (
       <div className='musicPlayer'>
         <div className='playerControllers'>
@@ -85,7 +86,7 @@ export default class MusicPlayer extends Component {
     const nextSong = queueStore.getNextSong();
     queueAction.next();
   }
-  
+
   _handlePrev(ev) {
     ev.preventDefault();
     const { queueAction, musicPlayerAction } = this.actions;

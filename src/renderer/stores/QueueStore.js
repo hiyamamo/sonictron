@@ -126,7 +126,9 @@ export default class QueueStore extends Store {
     this.setState({
       volume: val
     });
-    this._gainNode.gain.value = val / 100;
+    if (this._audio) {
+      this._gainNode.gain.value = val / 100;
+    }
     localStorage.volume = val;
   }
 
