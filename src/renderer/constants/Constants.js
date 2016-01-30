@@ -32,6 +32,7 @@ export const QueueConstants = keymirror({
   RESUME: null,
   CHANGE_VOLUME: null,
   SEEK: null,
+  TOGGLE_REPEAT: null,
 });
 
 export const ConfigConstants = keymirror({

@@ -11,6 +11,7 @@ export default class Queue extends Component {
     this.state = {
       songs: this.stores.queueStore.getQueue(),
       nowSong: this.stores.queueStore.getNowPlaying(),
+      nowIndex: this.stores.queueStore.getNowIndex(),
     };
   }
 
@@ -27,6 +28,7 @@ export default class Queue extends Component {
     this.setState({
       songs: store.getQueue(),
       nowSong: store.getNowPlaying(),
+      nowIndex: store.getNowIndex(),
     });
   }
 
@@ -60,7 +62,7 @@ export default class Queue extends Component {
       <div className='queue'>
         <p className='queueTitle'>Queue</p>
         <QueueControllerWrapper handlers={handlers} />
-        <QueueList nowSong={this.state.nowSong} songs={this.state.songs} handlers={handlers} />
+        <QueueList nowSong={this.state.nowSong} nowIndex={this.state.nowIndex} songs={this.state.songs} handlers={handlers} />
       </div>
     );
   }

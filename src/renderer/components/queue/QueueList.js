@@ -5,7 +5,10 @@ import QueueItem from './QueueItem';
 export default class QueueList extends React.Component {
   render() {
     const queueItems = this.props.songs.map((song, idx) => {
-      const nowPlaying = this.props.nowSong.id === song.id;
+      let nowPlaying = false;
+      if (this.props.nowSong.id) {
+        nowPlaying = this.props.nowIndex === idx;
+      }
       return <QueueItem key={idx} nowPlaying={nowPlaying} song={song} index={idx} onPlay={this.props.handlers.onPlay} onRemove={this.props.handlers.onRemove} />
     });
     return (

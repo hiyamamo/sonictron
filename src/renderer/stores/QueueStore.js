@@ -27,6 +27,7 @@ export default class QueueStore extends Store {
     this.register(QueueConstants.SHUFFLE, this._shuffle);
     this.register(QueueConstants.CHANGE_VOLUME, this._changeVolume);
     this.register(QueueConstants.SEEK, this._seek);
+    this.register(QueueConstants.TOGGLE_REPEAT, this._toggleRepeat);
   }
 
   _initState() {
@@ -43,6 +44,7 @@ export default class QueueStore extends Store {
       playing: false,
       time: 0,
       volume: localStorage.volume || 50,
+      repeat: localStorage.repeat || 'none',
     });
   }
 
@@ -54,6 +56,10 @@ export default class QueueStore extends Store {
     return this.state.time;
   }
 
+  repeat() {
+    return this.state.repeat;
+  }
+
   getQueue() {
     return this.state.queue;
   }
@@ -62,7 +68,7 @@ export default class QueueStore extends Store {
     return this.state.song;
   }
 
-  nowIndex() {
+  getNowIndex() {
     return this.state.nowIndex;
   }
 
@@ -96,7 +102,7 @@ export default class QueueStore extends Store {
     this._audio = new Audio(song.url);
 
     this._audio.addEventListener('timeupdate', this._onUpdateTime.bind(this));
-    this._audio.addEventListener('ended', this._putForward.bind(this));
+    this._audio.addEventListener('ended', this._onEndSong.bind(this));
 
     this._sourceNode = this._audioContext.createMediaElementSource(this._audio);
     this._gainNode = this._audioContext.createGain();
@@ -110,6 +116,14 @@ export default class QueueStore extends Store {
       song: song,
       playing: true,
     });
+  }
+
+  _onEndSong() {
+    if (this.state.repeat === 'single') {
+      this._play(this.state.song);
+    } else {
+      this._putForward();
+    }
   }
 
   _seek(val) {
@@ -162,6 +176,8 @@ export default class QueueStore extends Store {
       this._sourceNode = null;
       this.setState({
         playing: false,
+        song: {},
+        time: 0,
       });
     }
   }
@@ -173,10 +189,18 @@ export default class QueueStore extends Store {
   }
 
   _putForward() {
-    let idx = 0;
-    if (this.state.nowIndex < this.state.queue.length - 1){
-      idx = this.state.nowIndex + 1;
+
+    let idx = this.state.nowIndex + 1;
+
+    if (idx >= this.state.queue.length) {
+      if (this.state.repeat !== 'all') {
+        this._stop();
+        return;
+      } else {
+        idx = 0;
+      }
     }
+
     this.setState({
       nowIndex: idx,
     });
@@ -227,7 +251,6 @@ export default class QueueStore extends Store {
     this.setState({
       queue: q,
     });
-    
   }
 
   _remove(idx) {
@@ -267,4 +290,21 @@ export default class QueueStore extends Store {
     });
   }
 
+  _toggleRepeat() {
+    let repeat = 'none';
+
+    if (this.state.repeat === 'none') {
+      repeat = 'all';
+    }
+
+    if (this.state.repeat === 'all') {
+      repeat = 'single';
+    }
+
+    this.setState({
+      repeat: repeat
+    });
+
+    localStorage.repeat = repeat;
+  }
 }

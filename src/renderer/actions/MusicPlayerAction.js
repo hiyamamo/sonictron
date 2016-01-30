@@ -32,4 +32,8 @@ export default class MusicPlayerAction extends Action {
     this.dispatch(QueueConstants.SEEK, val);
   }
 
+  toggleRepeat() {
+    this.dispatch(QueueConstants.TOGGLE_REPEAT);
+  }
+
 }

@@ -16,6 +16,7 @@ export default class MusicPlayer extends Component {
       playing: false,
       volume: this.stores.queueStore.getVolume(),
       time: 0,
+      repeat: this.stores.queueStore.repeat(),
     };
   }
 
@@ -35,6 +36,7 @@ export default class MusicPlayer extends Component {
       time: store.currentTime(),
       song: newSong,
       volume: store.getVolume(),
+      repeat: store.repeat(),
     });
   }
 
@@ -46,13 +48,25 @@ export default class MusicPlayer extends Component {
       glyph = 'play';
     }
 
+    let loopClassName = 'loop';
+    let loopOneStyle = {};
+    if (this.state.repeat !== 'none') {
+      loopClassName = 'loop toggleOn';
+    }
+    if (this.state.repeat !== 'single') {
+      loopOneStyle.display = 'none';
+    }
+
     return (
       <div className='musicPlayer'>
         <div className='playerControllers'>
           <Controller className='prev' glyph='fast-backward' onClick={this._handlePrev.bind(this)} />
           <Controller className='playPause' ptSize='large' onClick={this._handlePlayOrPause.bind(this)} glyph={glyph} />
           <Controller className='next' glyph='fast-forward' onClick={this._handleNext.bind(this)} />
-          <Controller className='loop' glyph='loop' />
+          <div className='loopContainer'>
+            <Controller className={loopClassName} glyph='loop' onClick={this._handleRepeat.bind(this)} />
+            <div className='loopOne' style={loopOneStyle} >①</div>
+          </div>
           <Volume value={this.state.volume} onChange={this._handleVolumeChange.bind(this)} />
         </div>
         <div className='songDisplay'>
@@ -101,6 +115,11 @@ export default class MusicPlayer extends Component {
 
   _handleTimeSliderChange(ev) {
     this.actions.musicPlayerAction.seek(ev.target.value);
+  }
+
+  _handleRepeat(ev) {
+    ev.preventDefault();
+    this.actions.musicPlayerAction.toggleRepeat();
   }
 
 }

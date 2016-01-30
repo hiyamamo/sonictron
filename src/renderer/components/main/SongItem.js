@@ -6,7 +6,6 @@ export default class SongItem extends React.Component {
     return (
       <tr className='songItem' >
         <td>
-          <SongIcon glyph='star-empty' title='favorite' onClick={this._handleAddFav.bind(this)}/>
           <SongIcon glyph='play' title='play' onClick={this._handlePlay.bind(this)} />
           <SongIcon glyph='plus' title='add last' onClick={this._handleAddLast.bind(this)} />
           <SongIcon glyph='right-thin' title='add next' onClick={this._handleAddNext.bind(this)} />

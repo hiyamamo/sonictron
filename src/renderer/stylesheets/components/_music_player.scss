@@ -1,10 +1,28 @@
 $playedColor: #4682b4;
+$toggleColor: #007fff;
+
 .musicPlayer {
   overflow: hidden;
   margin-top: 10px;
 
-  .toggleOn span {
-    color: #66FFFF;
+  .loopContainer {
+    display: inline-block;
+    position: relative;
+    width: 44px;
+
+    .loopOne {
+      position: absolute;
+      font-size: 10px;
+      color: $toggleColor;
+      right: 4px;
+      top: 3px;
+      font-weight: bold;
+      z-index: 1;
+    }
+  }
+
+  .toggleOn {
+    color: $toggleColor;
   }
 
   .playerControllers {
@@ -16,7 +34,7 @@ $playedColor: #4682b4;
       vertical-align: middle;
       padding-left: 10px;
       &:active {
-        color: #66FFFF;
+        color: $toggleColor;
       }
     }
 
