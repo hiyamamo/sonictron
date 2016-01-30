@@ -30,6 +30,9 @@
     }
 
     .playPause {
+      display: inline-block;
+      width: 50px;
+      padding-left: 15px;
       margin: 0 10px;
       font-size: 60px;
     }
