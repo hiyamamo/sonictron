@@ -23,11 +23,13 @@ a {
     cursor: pointer;
   }
 }
+.pane::-webkit-scrollbar {
+  display: none;
+}
 
 .pane-m {
   max-width: 400px;
   min-width: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
-  flex: 1;
 }

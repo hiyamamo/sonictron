@@ -8,7 +8,7 @@ import Main from './main/Main';
 import Navigation from './common/Navigation';
 import Queue from './queue/Queue';
 import MusicPlayer from './musicPlayer/MusicPlayer';
-import { Window, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
+import { Window, PaneGroup, Content, Toolbar, Actionbar, Pane } from 'react-photonkit';
 
 export default class Home extends Component {
 
@@ -22,15 +22,17 @@ export default class Home extends Component {
           </Actionbar>
         </Toolbar>
         <Content>
-          <Pane ptSize='sm' sidebar>
-            <Sidebar />
-          </Pane>
-          <Pane>
-            <Main />
-          </Pane>
-          <Pane className='pane-m'>
-            <Queue />
-          </Pane>
+          <PaneGroup>
+            <Pane ptSize='sm' sidebar>
+              <Sidebar />
+            </Pane>
+            <Pane>
+              <Main />
+            </Pane>
+            <Pane className='pane-m'>
+              <Queue />
+            </Pane>
+          </PaneGroup>
         </Content>
       </Window>
     );
