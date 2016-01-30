@@ -18,7 +18,6 @@ app.on('ready', () => {
     width: 1420,
     height: 840,
     minWidth: 1420,
-    'title-bar-style': 'hidden',
     autoHideMenuBar: true,
   });
   mainWindow.loadURL('file://' + __dirname + '/../renderer/index.html');
