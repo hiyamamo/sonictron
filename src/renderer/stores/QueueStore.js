@@ -94,11 +94,12 @@ export default class QueueStore extends Store {
     return this.state.queue[pIdx];
   }
 
-  _play(song) {
-    if (this.state.playing) {
-      this._audio.pause();
+  _load(song) {
+
+    if (this._audio) {
       this._audio.src = '';
     }
+
     this._audio = new Audio(song.url);
 
     this._audio.addEventListener('timeupdate', this._onUpdateTime.bind(this));
@@ -110,10 +111,22 @@ export default class QueueStore extends Store {
     this._gainNode.connect(this._audioContext.destination);
     this._gainNode.gain.value = this.state.volume / 100;
 
+    this.setState({
+      song: song
+    });
+  }
+
+  _play(song) {
+    if (this.state.playing) {
+      this._audio.pause();
+      this._audio.src = '';
+    }
+
+    this._load(song);
+
     this._audio.play();
 
     this.setState({
-      song: song,
       playing: true,
     });
   }
@@ -188,6 +201,21 @@ export default class QueueStore extends Store {
     });
   }
 
+  _put(idx) {
+    const nextSong = this.state.queue[idx];
+
+    this.setState({
+      nowIndex: idx,
+      time: 0,
+    });
+
+    if (this.state.playing) {
+      this._play(nextSong);
+    } else {
+      this._load(nextSong);
+    }
+  }
+
   _putForward() {
 
     let idx = this.state.nowIndex + 1;
@@ -201,29 +229,23 @@ export default class QueueStore extends Store {
       }
     }
 
-    this.setState({
-      nowIndex: idx,
-    });
-    if (this.state.playing) {
-      this._play(this.state.queue[idx]);
-    }
+    this._put(idx);
   }
 
   _putBackward() {
     let idx = 0;
+
     if (this.state.nowIndex > 0){
       idx = this.state.nowIndex - 1;
-    } else {
-      idx = this.state.queue.length - 1;
     }
 
-    this.setState({
-      nowIndex: idx,
-    });
-
-    if (this.state.playing) {
-      this._play(this.state.queue[idx]);
+    if (this.state.time >= 5) {
+      console.log(this.state.time);
+      this._seek(0);
+      return;
     }
+
+    this._put(idx);
   }
 
   _addLast(songs) {
