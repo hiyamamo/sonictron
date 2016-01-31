@@ -11,7 +11,7 @@ export default class QueueItem extends React.Component {
     return (
       <tr className='queueItem' >
         <td className='queueIcon' >{playingIcon}</td>
-        <td className='queueIcon'><Icon glyph='cancel' onClick={this._handleRemove.bind(this)} /></td>
+        <td className='queueIcon cancel' onClick={this._handleRemove.bind(this)} ><Icon glyph='cancel'  /></td>
         <td className='queueTitle' onClick={this._handlePlay.bind(this)} >{this.props.song.title}</td>
         <td className='queueDuration'>{formatDuration(this.props.song.duration)}</td>
       </tr>

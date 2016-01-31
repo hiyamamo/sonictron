@@ -256,9 +256,14 @@ export default class QueueStore extends Store {
   _remove(idx) {
     let q = this.state.queue;
     q.splice(idx, 1);
+
     this.setState({
       queue: q,
     });
+
+    if (idx === this.state.nowIndex) {
+      this._stop();
+    }
   }
 
   _clearAll() {

@@ -4,12 +4,20 @@
 
   .queueTitle {
     text-align: center;
+    cursor: pointer;
   }
 
   .queueControllerWrapper {
     width: 130px;
     margin-left: auto;
     margin-bottom: 20px;
+  }
+
+  .cancel {
+    cursor: pointer;
+    span {
+      cursor: pointer;
+    }
   }
 
   .queueController {

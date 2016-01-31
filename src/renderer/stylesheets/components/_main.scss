@@ -74,6 +74,13 @@
   }
 }
 
+.songTitle {
+  cursor: pointer;
+  &:hover {
+    background-color: #ccffff;
+  }
+}
+
 .songListControllerWrapper {
   margin-top: 5px;
 }
