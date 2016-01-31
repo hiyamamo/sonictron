@@ -27,6 +27,17 @@ a {
   display: none;
 }
 
+.mybtn {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 0px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.mybtn-default {
+  background: #87cefa;
+}
+
 .pane-m {
   max-width: 400px;
   min-width: 300px;

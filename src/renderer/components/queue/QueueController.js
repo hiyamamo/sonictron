@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-photonkit';
+import Button from '../common/Button';
 
 export default class QueueController extends React.Component { 
   render() {
