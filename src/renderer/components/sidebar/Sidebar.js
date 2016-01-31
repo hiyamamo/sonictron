@@ -2,8 +2,8 @@ import Component from '../Component';
 import ArtistList from './ArtistList';
 import Folders from './Folders';
 import Playlists from './Playlists';
-import SidebarButtonGroup from './SidebarButtonGroup';
 import React from 'react';
+import Button from '../common/Button';
 
 export default class Sidebar extends Component {
 
@@ -62,7 +62,7 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div className='sidebar'>
-        <SidebarButtonGroup handleReload={this._handleReload.bind(this)}/>
+        <Button glyph='arrows-ccw' onClick={this._handleReload.bind(this)}/>
         <Folders items={this.state.folders} selected={this.state.selectedFolder} onChangeSelect={this._handleChangeFolder.bind(this)} />
         <Playlists playlists={this.state.playlists} onClick={this._handlePlaylistClick.bind(this)} />
         <ArtistList items={this.state.artists} onClick={this._handleArtistClick.bind(this)} />

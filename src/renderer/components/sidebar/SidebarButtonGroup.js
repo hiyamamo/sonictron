@@ -1,12 +1,10 @@
 import React from 'react';
-import { ButtonGroup, Button, } from 'react-photonkit';
+import Button from '../common/Button';
 
 export default class SidebarButtonGroup extends React.Component {
   render() {
     return (
-      <ButtonGroup>
-        <Button glyph='arrows-ccw' onClick={this.props.handleReload}/>
-      </ButtonGroup>
+      <Button glyph='arrows-ccw' onClick={this.props.handleReload}/>
     );
   }
 }

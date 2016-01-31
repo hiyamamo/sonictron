@@ -23,19 +23,39 @@ a {
     cursor: pointer;
   }
 }
+
 .pane::-webkit-scrollbar {
   display: none;
 }
+button:focus {
+  border: 0;
+  outline: 0;
+}
 
 .mybtn {
+  margin-left: 10px;
   display: inline-block;
   margin-bottom: 0;
-  border: 0px;
   line-height: 1.4;
-  white-space: nowrap;
-}
-.mybtn-default {
-  background: #87cefa;
+  width: 42px;
+  height: 32px;
+  border-radius: 2px;
+  border: 0;
+  font-size: 0.9em;
+  background-color: #eee;
+  color: #646464;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+  }
+  &:active {
+    background-color: #eee;
+  }
+  .icon {
+    cursor: pointer;
+  }
+
 }
 
 .pane-m {
