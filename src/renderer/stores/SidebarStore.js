@@ -11,6 +11,15 @@ export default class SidebarStore extends Store {
     this.register(SidebarConstants.LOAD_ARTISTS, this._onLoadArtists);
     this.register(SidebarConstants.LOAD_FOLDERS, this._onLoadFolders);
     this.register(SidebarConstants.LOAD_PLAYLISTS, this._onLoadPlaylists);
+    this.register(SidebarConstants.CLEAR, this._initState);
+  }
+
+  _initState() {
+    this.setState({
+      artists: null,
+      folders: null,
+      playlists: null,
+    });
   }
 
   getArtists() {

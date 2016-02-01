@@ -102,8 +102,14 @@ export default {
       id: id,
     };
 
-    params = this._getHttpParams(params);
-    const url = this._buildURL(APIMethods.GetCoverArt, params);
+    const settings = {
+      server: this._server,
+      user: this._user,
+      md5Digest: this._md5Digest,
+      salt: this._salt,
+    };
+
+    const url = buildURL(APIMethods.GetCoverArt, params, settings);
     event.sender.send(IPCKeys.FinishGetCoverArtURL, url);
   },
 
@@ -115,6 +121,7 @@ export default {
     this._md5Digest = localStorage.md5Digest;
     this._salt = localStorage.salt;
   },
+
 
   _subsonicRequest(method, params) {
 
@@ -135,7 +142,12 @@ export default {
         });
 
         res.on('end', () => {
-          const data = JSON.parse(body);
+          let data;
+          try {
+            data = JSON.parse(body);
+          } catch(e) {
+            data = "";
+          }
           let subsonicResponse = (data['subsonic-response'] !== undefined) ? data['subsonic-response'] : { status: 'failed' };
           if (subsonicResponse.status == 'ok') {
             resolve(subsonicResponse);

@@ -5,18 +5,14 @@ export default class MainStore extends Store {
   constructor(context) {
     super(context);
 
-    this.state = {
-      title: "",
-      albums: [],
-      songs: [],
-      coverArt: "",
-    };
+    this._initState();
 
     this.register(MainConstants.LOAD_ALBUMS, this._loadAlbums);
     this.register(MainConstants.SET_TITLE, this._setTitle);
     this.register(MainConstants.LOAD_SONGS, this._loadSongs);
     this.register(MainConstants.CHANGE_MODE, this._onChangeMode);
     this.register(MainConstants.SET_COVERART, this._setCoverArt);
+    this.register(MainConstants.CLEAR, this._initState);
   }
 
   getAlbums() {
@@ -68,4 +64,15 @@ export default class MainStore extends Store {
       coverArt: coverArt,
     });
   }
+
+  _initState() {
+    this.setState({
+      title: "",
+      albums: [],
+      songs: [],
+      coverArt: "",
+      mode: "none",
+    });
+  }
+
 }

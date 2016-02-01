@@ -4,6 +4,7 @@ export const SidebarConstants = keymirror({
   LOAD_ARTISTS: null,
   LOAD_FOLDERS: null,
   LOAD_PLAYLISTS: null,
+  CLEAR: null,
 });
 
 export const MainConstants = keymirror({
@@ -13,6 +14,7 @@ export const MainConstants = keymirror({
   LOAD_SONGS: null,
   CHANGE_MODE: null,
   SET_COVERART: null,
+  CLEAR: null,
 });
 
 export const QueueConstants = keymirror({
