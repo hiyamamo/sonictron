@@ -13,7 +13,6 @@ app.on('window-all-closed', () => {
     app.quit();
 });
 
-Menu.initMenu();
 
 app.on('ready', () => {
 
@@ -28,6 +27,8 @@ app.on('ready', () => {
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
+
+  Menu.initMenu();
 
   SubSonicApiService.listen(ipcMain);
   ipcMain.on(IPCKeys.Initialize, (event, localStorage) => {
