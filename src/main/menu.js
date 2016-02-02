@@ -70,19 +70,6 @@ const template = [
             focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
         }
       },
-      {
-        label: 'Toggle Developer Tools',
-        accelerator: (function() {
-          if (process.platform == 'darwin')
-            return 'Alt+Command+I';
-          else
-            return 'Ctrl+Shift+I';
-        })(),
-        click: function(item, focusedWindow) {
-          if (focusedWindow)
-            focusedWindow.toggleDevTools();
-        }
-      },
     ]
   },
   {
@@ -110,6 +97,23 @@ const template = [
   },
 ];
 export function initMenu() {
+
+  if (process.env.NODE_ENV !== 'production') {
+    template[1].submenu.push({
+        label: 'Toggle Developer Tools',
+        accelerator: (function() {
+          if (process.platform == 'darwin')
+            return 'Alt+Command+I';
+          else
+            return 'Ctrl+Shift+I';
+        })(),
+        click: function(item, focusedWindow) {
+          if (focusedWindow)
+            focusedWindow.toggleDevTools();
+        }
+      });
+  }
+
   if (process.platform == 'darwin') {
     var name = app.getName();
     template.unshift({
