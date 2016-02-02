@@ -1,7 +1,7 @@
 import Component from './Component';
 import React from 'react';
 import { Link } from 'react-router';
-import { Icon, Input } from 'react-photonkit';
+import { Icon, Input, CheckBox } from 'react-photonkit';
 import Button from './common/Button';
 import { remote } from 'electron';
 
@@ -73,11 +73,13 @@ export default class Config extends Component {
           <Icon glyph='cog' withText={true} />
           <span>Configurations</span>
         </div>
-        <Link to='/'><Button text='Home' /></Link>
+        <Link to='/'><Button className="homeBtn" text='Home' /></Link>
         <form className='cog-form'>
-          <Input label='Server' placeholder='Server' onChange={this._onServerChange.bind(this)} value={this.state.server} />
-          <Input label='User' placeholder='User' onChange={this._onUserChange.bind(this)} value={this.state.user} />
-          <Input type='password' label='Password' placeholder='Password' onChange={this._onPasswordChange.bind(this)} value={this.state.password} />
+          <div className="login">
+            <Input label='Server' placeholder='Server' onChange={this._onServerChange.bind(this)} value={this.state.server} />
+            <Input label='User' placeholder='User' onChange={this._onUserChange.bind(this)} value={this.state.user} />
+            <Input type='password' label='Password' placeholder='Password' onChange={this._onPasswordChange.bind(this)} value={this.state.password} />
+          </div>
         <div className="btnContainer">
           <Button text='Save' onClick={this._handleSave.bind(this)} />
           <Button text="Demo" onClick={this._handleDemoClick.bind(this)} />

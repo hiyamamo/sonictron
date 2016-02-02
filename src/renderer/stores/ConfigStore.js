@@ -32,6 +32,7 @@ export default class ConfigStore extends Store {
     return this.state.password;
   }
 
+
   // private method
   _save(server, user, md5Digest, salt, password) {
     this.setState({

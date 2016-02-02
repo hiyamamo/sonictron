@@ -1,10 +1,15 @@
 .config {
-  margin: 10px;
   .cog-title {
+    margin-top: 10px;
     span {
       font-size: 30px;
-      margin-left: 5px;
+      margin-left: 15px;
     }
+  }
+
+  .homeBtn {
+    margin-left: 30px;
+    margin-top: 10px;
   }
 
   .cog-form {
@@ -12,7 +17,7 @@
     margin-left: 30px;
     width: 300px;
     
-    label{
+    .login label{
       &:after {
         content: "*";
         margin-left: 1px;
