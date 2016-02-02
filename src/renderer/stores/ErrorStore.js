@@ -5,11 +5,19 @@ export default class ErrorStore extends Store {
   constructor(context) {
     super(context);
     this.state = {
-      error: "",
+      reason: "",
       message: "",
     };
     this._ipc = context.ipc;
     this._ipc.on(IPCKeys.SendErrorMessage, this._onError.bind(this));
+  }
+
+  reason() {
+    return this.state.reason;
+  }
+
+  message() {
+    return this.state.message;
   }
 
   _onError(event, error) {
