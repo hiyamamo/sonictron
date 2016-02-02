@@ -17,4 +17,12 @@ export default keymirror({
   FinishGetCoverArtURL: null,
   Initialize: null,
   SendErrorMessage: null,
+  Play: null,
+  Pause: null,
+  RequestPlay: null,
+  RequestPause: null,
+  RequestPrev: null,
+  RequestNext: null,
+  RequestIncreseVolume: null,
+  RequestDecreaseVolume: null,
 });

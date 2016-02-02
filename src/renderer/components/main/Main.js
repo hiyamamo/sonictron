@@ -81,7 +81,6 @@ export default class Main extends Component {
     this.actions.mainAction.playRandom(this.state.songs);
   }
 
-
   render() {
     const songHandlers = {
       addLast: this._handleAddSong2Last.bind(this),
@@ -109,7 +108,7 @@ export default class Main extends Component {
         break;
     }
     return (
-      <div className='main' >
+      <div className='main'> 
         <h3>{this.state.title}</h3>
         {content}
       </div>

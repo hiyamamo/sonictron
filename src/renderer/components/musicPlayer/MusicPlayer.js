@@ -110,6 +110,7 @@ export default class MusicPlayer extends Component {
   }
 
   _handleVolumeChange(ev) {
+    ev.preventDefault();
     this.actions.musicPlayerAction.changeVolume(ev.target.value);
   }
 

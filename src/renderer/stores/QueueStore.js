@@ -1,9 +1,11 @@
 import { Store } from 'material-flux';
+import IPCKeys from '../../common/IPCKeys';
 import { QueueConstants } from '../constants/Constants';
 
 export default class QueueStore extends Store {
   constructor(context) {
     super(context);
+    this._ipc = context.ipc;
 
     this._initState();
 
@@ -11,6 +13,13 @@ export default class QueueStore extends Store {
     this._audio = null;
     this._sourceNode = null;
     this._gainNode = null;
+
+    this._ipc.on(IPCKeys.RequestPlay, this._resume.bind(this));
+    this._ipc.on(IPCKeys.RequestPause, this._pause.bind(this));
+    this._ipc.on(IPCKeys.RequestPrev, this._putBackward.bind(this));
+    this._ipc.on(IPCKeys.RequestNext, this._putForward.bind(this));
+    this._ipc.on(IPCKeys.RequestIncreseVolume, this._increaseVolume.bind(this));
+    this._ipc.on(IPCKeys.RequestDecreaseVolume, this._decreaseVolume.bind(this));
 
     this.register(QueueConstants.PLAY_SONG, this._play);
     this.register(QueueConstants.PLAY_FIRST, this._play1st);
@@ -129,6 +138,7 @@ export default class QueueStore extends Store {
     this.setState({
       playing: true,
     });
+    this._ipc.send(IPCKeys.Play);
   }
 
   _onEndSong() {
@@ -150,6 +160,12 @@ export default class QueueStore extends Store {
   }
 
   _changeVolume(val) {
+    if (val >= 100) {
+      val = 100;
+    }
+    if (val < 0){
+      val = 0;
+    }
     this.setState({
       volume: val
     });
@@ -158,6 +174,17 @@ export default class QueueStore extends Store {
     }
     localStorage.volume = val;
   }
+
+  _increaseVolume() {
+    const vol = Number(this.state.volume) + 1;
+    this._changeVolume(vol);
+  }
+
+  _decreaseVolume() {
+    const vol = Number(this.state.volume) - 1;
+    this._changeVolume(vol);
+  }
+
 
   _onUpdateTime() {
     if (this._audio) {
@@ -172,6 +199,7 @@ export default class QueueStore extends Store {
     this.setState({
       playing: false,
     });
+    this._ipc.send(IPCKeys.Pause);
   }
 
   _resume() {
@@ -179,6 +207,7 @@ export default class QueueStore extends Store {
     this.setState({
       playing: true,
     });
+    this._ipc.send(IPCKeys.Play);
   }
 
   _stop() {
@@ -193,6 +222,7 @@ export default class QueueStore extends Store {
         time: 0,
       });
     }
+    this._ipc.send(IPCKeys.Pause);
   }
 
   _setNowIndex(index) {
@@ -202,6 +232,9 @@ export default class QueueStore extends Store {
   }
 
   _put(idx) {
+    if (!this.state.queue) {
+      return;
+    }
     const nextSong = this.state.queue[idx];
 
     this.setState({

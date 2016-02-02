@@ -12,7 +12,7 @@ export default class Volume extends React.Component {
     return (
       <span className='volume'>
         <div className='actual' style={actualStyle} ></div>
-        <input type='range' min='0' max='100' defaultValue={this.props.value} onChange={this.props.onChange} />
+        <input type='range' min='0' max='100' value={this.props.value} defaultValue={this.props.value} onChange={this.props.onChange} />
       </span>
     );
   }
