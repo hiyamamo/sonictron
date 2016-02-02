@@ -7,6 +7,7 @@ import Config from './Config';
 import MusicPlayer from './musicPlayer/MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
+import ErrToast from './ErrToast';
 import AppContext from '../AppContext';
 
 export default class App extends React.Component {
@@ -23,6 +24,7 @@ export default class App extends React.Component {
     return (
       <Provider context={this._context} >
         {this.props.children}
+        <ErrToast />
       </Provider>
     );
   }
