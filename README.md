@@ -1,2 +1,2 @@
 # sonictron
-subsonic client for electron
+Music player for subsonic with electron
