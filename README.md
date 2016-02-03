@@ -1,7 +1,7 @@
 # Sonictron
 Music player for subsonic with electron
 
-## Build
+## Build & Run
 
 ```
  # clone repository
@@ -17,3 +17,5 @@ Music player for subsonic with electron
  npm start
 ```
 
+## Download
+Visit [Release Page](https://github.com/hiyamamo/sonictron/releases)
