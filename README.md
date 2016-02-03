@@ -1,4 +1,3 @@
-C:\Users\YAMAMOTO_HI\Project\sonictron\README.md
 # Sonictron
 Music player for subsonic with electron
 
