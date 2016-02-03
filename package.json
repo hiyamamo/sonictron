@@ -8,7 +8,10 @@
     "start": "electron --debug dist/main/main.js",
     "build": "gulp",
     "debug": "node-inspector",
-    "release":"electron-packager . Sonictron --all --out=release" ,
+    "release-all":"electron-packager . Sonictron --all --out=release" ,
+    "release-osx":"electron-packager . Sonictron --platform=darwin --arch=all --out=release" ,
+    "release-win":"electron-packager . Sonictron --platform=win32 --arch=all --out=release" ,
+    "release-linux":"electron-packager . Sonictron --platform=linux --arch=all --out=release" ,
     "test": "mocha --compilers js:espower-babel/guess test/**/*.js"
   },
   "keywords": [],
