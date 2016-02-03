@@ -6,6 +6,7 @@
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron --debug dist/main/main.js",
+    "build": "gulp",
     "debug": "node-inspector",
     "test": "mocha --compilers js:espower-babel/guess test/**/*.js"
   },
