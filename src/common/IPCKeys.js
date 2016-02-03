@@ -25,4 +25,5 @@ export default keymirror({
   RequestNext: null,
   RequestIncreseVolume: null,
   RequestDecreaseVolume: null,
+  RequestMovePreferences: null,
 });

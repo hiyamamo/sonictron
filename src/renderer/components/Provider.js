@@ -16,6 +16,6 @@ export default class Provider extends React.Component {
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return <div className='provider'>{this.props.children}</div>;
   }
 }

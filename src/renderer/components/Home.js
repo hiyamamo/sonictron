@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Component from './Component';
-import Config from './Config';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';
 import Navigation from './common/Navigation';

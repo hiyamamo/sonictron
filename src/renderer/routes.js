@@ -1,7 +1,7 @@
 import { Route, IndexRoute, } from 'react-router';
 import React from 'react';
 import App from './components/App';
-import Config from './components/Config';
+import Config from './components/config/Config';
 import Home from './components/Home';
 
 function requireSettings(nextState, replace) {

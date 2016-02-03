@@ -1,4 +1,8 @@
 .config {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  overflow: hidden;
   .cog-title {
     margin-top: 10px;
     span {
@@ -7,9 +11,18 @@
     }
   }
 
+  .homeIcon {
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    top: 0px;
+    color: black;
+    font-size: 26px;
+  }
+
   .homeBtn {
     margin-left: 30px;
-    margin-top: 10px;
+    margin-top: 40px;
   }
 
   .cog-form {
@@ -17,16 +30,58 @@
     margin-left: 30px;
     width: 300px;
     
-    .login label{
-      &:after {
-        content: "*";
-        margin-left: 1px;
-        color: red;
+    .login {
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #bbb;
+      label{
+        &:after {
+          content: "*";
+          margin-left: 1px;
+          color: red;
+        }
       }
     }
+
+    .checkbox {
+      float: left;
+    }
+    
+    .expandSC {
+      margin-left: 10px;
+      vertical-align: bottom;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
     .btnContainer {
       width: 110px;
       margin-left: auto;
+      clear: both;
     }
+  }
+  .tips {
+    clear: both;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .globalShortcutItem {
+
+    margin-bottom: 10px;
+    .shortcutText {
+      margin-left: 10px;
+      font-size: 10px;
+    }
+
+    .shortcutAccelerator {
+      font-size: 12px;
+      display: inline-block;
+      text-align: center;
+      width: 180px;
+      border-radius: 5px;
+      background-color: #ccc;
+    }
+    
   }
 }

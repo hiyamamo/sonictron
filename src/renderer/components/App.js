@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Provider from './Provider';
-import Config from './Config';
+import Config from './config/Config';
 import MusicPlayer from './musicPlayer/MusicPlayer';
 import Sidebar from './sidebar/Sidebar';
 import Main from './main/Main';

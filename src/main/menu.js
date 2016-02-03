@@ -127,6 +127,13 @@ export function initMenu() {
           type: 'separator'
         },
         {
+          label: 'Preferences',
+          accelerator: 'Ctrl+Comma',
+          click: (menuItem, win) => {
+            win.webContents.send(IPCKeys.RequestMovePreferences);
+          }
+        },
+        {
           label: 'Services',
           role: 'services',
           submenu: []
@@ -154,7 +161,29 @@ export function initMenu() {
         {
           label: 'Quit',
           accelerator: 'Command+Q',
-          click: function() { app.quit(); }
+          click: () => { app.quit(); }
+        },
+      ]
+    });
+  } else {
+    var name = app.getName();
+    template.unshift({
+      label: name,
+      submenu: [
+        {
+          label: 'Preferences',
+          accelerator: 'Ctrl+,',
+          click: (menuItem, win) => {
+            win.webContents.send(IPCKeys.RequestMovePreferences);
+          }
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Quit',
+          accelerator: 'Ctrl+Q',
+          click: () => { app.quit(); }
         },
       ]
     });

@@ -1,3 +1,7 @@
+.provider {
+  height: 100%;
+  overflow: hidden;
+}
 tr:active {
   color: initial;
   background-color: initial;
@@ -16,7 +20,6 @@ tr:active {
 .table-striped tr:active:nth-child(even) {
 }
 
-
 a {
   cursor: pointer;
   span {
@@ -27,6 +30,7 @@ a {
 .pane::-webkit-scrollbar {
   display: none;
 }
+
 button:focus {
   border: 0;
   outline: 0;
