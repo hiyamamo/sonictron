@@ -1,13 +1,14 @@
 {
   "name": "sonictron",
   "productName": "Sonictron",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron --debug dist/main/main.js",
     "build": "gulp",
     "debug": "node-inspector",
+    "release":"electron-packager . Sonictron --all --out=release" ,
     "test": "mocha --compilers js:espower-babel/guess test/**/*.js"
   },
   "keywords": [],
@@ -28,6 +29,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "electron-packager": "^5.2.1",
     "espower-babel": "^4.0.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
