@@ -1,5 +1,7 @@
 # Sonictron
-Music player for subsonic with electron
+Music player for subsonic with electron  
+
+![screenshot](images/screenshot.png)  
 
 ## Build & Run
 
