@@ -14,7 +14,6 @@ const APIMethods = {
 };
 export default {
   listen(ipc){
-    ipc.on(IPCKeys.SaveServerConfig, this.onSaveServerConfig.bind(this));
     ipc.on(IPCKeys.RequestGetArtists, this._getArtists.bind(this));
     ipc.on(IPCKeys.RequestGetPlaylists, this._getPlaylists.bind(this));
     ipc.on(IPCKeys.RequestGetPlaylist, this._getPlaylist.bind(this));
@@ -115,11 +114,11 @@ export default {
 
 
 
-  onSaveServerConfig(event, localStorage) {
-    this._server = localStorage.server;
-    this._user = localStorage.user;
-    this._md5Digest = localStorage.md5Digest;
-    this._salt = localStorage.salt;
+  onSaveServerConfig(event, settings) {
+    this._server = settings.server;
+    this._user = settings.user;
+    this._md5Digest = settings.md5Digest;
+    this._salt = settings.salt;
   },
 
 

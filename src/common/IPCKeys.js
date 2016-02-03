@@ -12,7 +12,7 @@ export default keymirror({
   FinishGetAlbums: null,
   RequestGetSongs: null,
   FinishGetSongs: null,
-  SaveServerConfig: null,
+  SaveConfig: null,
   RequestGetCoverArtURL: null,
   FinishGetCoverArtURL: null,
   Initialize: null,

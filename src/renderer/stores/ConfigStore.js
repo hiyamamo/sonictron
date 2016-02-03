@@ -14,6 +14,7 @@ export default class ConfigStore extends Store {
       md5Digest: localStorage.md5Digest || '',
       salt: localStorage.salt || '',
       password: localStorage.password || '',
+      globalShortcut: localStorage.globalShortcut || false,
     };
     this._ipc = context.ipc;
     this.register(ConfigConstants.SAVE_CONFIG, this._save);
@@ -32,15 +33,20 @@ export default class ConfigStore extends Store {
     return this.state.password;
   }
 
+  isEnabledGS() {
+    return this.state.globalShortcut;
+  }
 
   // private method
-  _save(server, user, md5Digest, salt, password) {
+  _save(settings) {
+    const { server, user, password, md5Digest, salt, globalShortcut } = settings;
     this.setState({
       server: server,
       user: user,
       password: password,
       md5Digest: md5Digest,
       salt: salt,
+      globalShortcut: globalShortcut,
     });
 
     localStorage.server = server;
@@ -48,8 +54,9 @@ export default class ConfigStore extends Store {
     localStorage.md5Digest = md5Digest;
     localStorage.salt = salt;
     localStorage.password = password;
+    localStorage.globalShortcut = globalShortcut;
 
-    this._ipc.send(IPCKeys.SaveServerConfig, localStorage);
+    this._ipc.send(IPCKeys.SaveConfig, localStorage);
 
   }
 

@@ -17,6 +17,7 @@ export default class Config extends Component {
       server: this.configStore.getServer(),
       user: this.configStore.getUser(),
       password: this.configStore.getPassword(),
+      globalShortcut: this.configStore.isEnabledGS(),
     };
   }
 
@@ -34,7 +35,7 @@ export default class Config extends Component {
 
   _handleSave(ev) {
     ev.preventDefault();
-    this.configAction.save(this.state.server, this.state.user, this.state.password);
+    this.configAction.save(this.state);
   }
 
   _onServerChange(event) {
@@ -66,6 +67,12 @@ export default class Config extends Component {
     }
   }
 
+  _handleGSCheck(ev) {
+    this.setState({
+      globalShortcut: ev.target.checked
+    });
+  }
+
   render() {
     return (
       <div className="config">
@@ -80,6 +87,7 @@ export default class Config extends Component {
             <Input label='User' placeholder='User' onChange={this._onUserChange.bind(this)} value={this.state.user} />
             <Input type='password' label='Password' placeholder='Password' onChange={this._onPasswordChange.bind(this)} value={this.state.password} />
           </div>
+          <CheckBox label='Enable global short cut' checked={this.state.globalShortcut} onChange={this._handleGSCheck.bind(this)}/>
         <div className="btnContainer">
           <Button text='Save' onClick={this._handleSave.bind(this)} />
           <Button text="Demo" onClick={this._handleDemoClick.bind(this)} />

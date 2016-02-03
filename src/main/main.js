@@ -4,6 +4,8 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import SubSonicApiService from './service/SubSonicApiService';
 import IPCKeys from '../common/IPCKeys';
 import * as Menu from './menu';
+import globalShortcut from './globalShortcut';
+import playingStatus from './playingStatus';
 
 
 let mainWindow;
@@ -15,7 +17,6 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', () => {
-
   mainWindow = new BrowserWindow({
     width: 1420,
     height: 840,
@@ -31,10 +32,33 @@ app.on('ready', () => {
   Menu.initMenu();
 
   SubSonicApiService.listen(ipcMain);
-  ipcMain.on(IPCKeys.Initialize, (event, localStorage) => {
-    SubSonicApiService.onSaveServerConfig(event, localStorage);
+  ipcMain.on(IPCKeys.Initialize, (event, settings) => {
+    _setGlobalShortcut(settings.globalShortcut, mainWindow);
+    SubSonicApiService.onSaveServerConfig(event, settings);
   });
-  ipcMain.on(IPCKeys.Play, Menu.onPlaySong.bind(this));
-  ipcMain.on(IPCKeys.Pause, Menu.onPauseSong.bind(this));
+
+  ipcMain.on(IPCKeys.SaveConfig, (event, settings) => {
+    _setGlobalShortcut(settings.globalShortcut, mainWindow);
+    SubSonicApiService.onSaveServerConfig(event, settings);
+  });
+  ipcMain.on(IPCKeys.Play, onPlay.bind(this));
+  ipcMain.on(IPCKeys.Pause, onPause.bind(this));
 });
 
+function _setGlobalShortcut(enabled, win) {
+  if (enabled === "true") {
+    globalShortcut.register(win);
+  } else {
+    globalShortcut.unregister();
+  }
+}
+
+function onPlay(event) {
+  playingStatus.playing = true;
+  Menu.onPlay();
+}
+
+function onPause(event) {
+  playingStatus.playing = false;
+  Menu.onPause();
+}

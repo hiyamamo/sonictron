@@ -169,13 +169,13 @@ const playPauseMenuItem = {
   click: onClickPlayPause,
 };
 
-export function onPlaySong() {
+export function onPlay() {
   const menuItem = playPauseMenuItem;
   menuItem.label = 'Play';
   togglePlayPause(menuItem);
 }
 
-export function onPauseSong() {
+export function onPause() {
   const menuItem = playPauseMenuItem;
   menuItem.label = 'Pause';
   togglePlayPause(menuItem);
