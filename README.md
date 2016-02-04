@@ -1,5 +1,5 @@
 # Sonictron
-Music player for subsonic with electron  
+Music player for [Subsonic](http://www.subsonic.org/) with electron  
 
 ![screenshot](images/screenshot.png)  
 
