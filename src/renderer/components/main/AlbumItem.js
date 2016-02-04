@@ -16,7 +16,7 @@ export default class AlbumItem extends React.Component {
   }
 
   onError(ev) {
-    ev.target.src = '../../images/albumdefault.jpg';
+    ev.target.src = '../images/albumdefault.jpg';
   }
 
   _handleClick(ev) {

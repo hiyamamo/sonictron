@@ -18,7 +18,7 @@ export default class CoverArt extends React.Component {
   }
 
   onError(ev) {
-    ev.target.src = '../../images/albumdefault.jpg';
+    ev.target.src = '../images/albumdefault.jpg';
   }
 }
 
