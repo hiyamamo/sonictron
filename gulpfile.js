@@ -88,7 +88,7 @@ gulp.task('packageJson', function(done) {
 
 gulp.task('package', [ 'win32', 'darwin', 'linux' ].map(function(platform) {
   var taskName = 'package:' + platform;
-  gulp.task(taskName, ['build'], function(done) {
+  gulp.task(taskName, function(done) {
     packager({
       dir: 'dist',
       name: 'Sonictron',
